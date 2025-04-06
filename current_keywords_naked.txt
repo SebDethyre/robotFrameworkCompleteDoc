@@ -1,0 +1,25 @@
+Affichage dynamique des champs sur le formulaire d'ajout d'un type de DI
+    Depuis la page d'accueil
+    Depuis le formulaire d'ajout d'un type de dossier d'instruction
+    Click On Submit Button
+    La page ne doit pas contenir d'erreur
+
+Affichage dynamique des champs sur le formulaire de modification d'un type de DI
+    Depuis la page d'accueil
+    Create Dictionary
+    Ajouter type de dossier d'instruction
+    Set Suite Variable
+    Create List
+    Depuis le formulaire de modification d'un type de dossier d'instruction
+    Click On Submit Button
+    La page ne doit pas contenir d'erreur
+
+Affichage des champs sur le formulaire de consultation d'un type de DI
+    Depuis la page d'accueil
+    Depuis le contexte type de dossier d'instruction
+
+Affichage des champs sur le formulaire de suppression d'un type de DI
+    Depuis la page d'accueil
+    Depuis le formulaire de suppression d'un type de dossier d'instruction
+    Click On Submit Button
+

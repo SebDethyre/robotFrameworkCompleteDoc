@@ -1,0 +1,1124 @@
+[
+    {
+        "name": "Convert To Lower Case",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Converts string to lower case.</p>\n<p>Uses Python's standard <a href=\"https://docs.python.org/library/stdtypes.html#str.lower\">lower()</a> method.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${str1} =</td>\n<td>Convert To Lower Case</td>\n<td>ABC</td>\n</tr>\n<tr>\n<td>${str2} =</td>\n<td>Convert To Lower Case</td>\n<td>1A2c3D</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str1}</td>\n<td>abc</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str2}</td>\n<td>1a2c3d</td>\n</tr>\n</table>",
+        "shortdoc": "Converts string to lower case.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 52,
+        "doc_fr": "Convertit la chaîne en minuscules.\n\nUtilise la méthode standard Python\n[lower()](https://docs.python.org/library/stdtypes.html#str.lower).\n\nExemples :\n\n${str1} = | Convertir en minuscules | ABC \n---|---|--- \n${str2} = | Convertir en minuscules | 1A2c3D \nDoit être égal | ${str1} | abc \nDoit être égal | ${str2} | 1a2c3d"
+    },
+    {
+        "name": "Convert To Title Case",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "exclude",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Converts string to title case.</p>\n<p>Uses the following algorithm:</p>\n<ul>\n<li>Split the string to words from whitespace characters (spaces, newlines, etc.).</li>\n<li>Exclude words that are not all lower case. This preserves, for example, \"OK\" and \"iPhone\".</li>\n<li>Exclude also words listed in the optional <code>exclude</code> argument.</li>\n<li>Title case the first alphabetical character of each word that has not been excluded.</li>\n<li>Join all words together so that original whitespace is preserved.</li>\n</ul>\n<p>Explicitly excluded words can be given as a list or as a string with words separated by a comma and an optional space. Excluded words are actually considered to be regular expression patterns, so it is possible to use something like \"example[.!?]?\" to match the word \"example\" on it own and also if followed by \".\", \"!\" or \"?\". See <span class=\"name\">BuiltIn.Should Match Regexp</span> for more information about Python regular expression syntax in general and how to use it in Robot Framework data in particular.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${str1} =</td>\n<td>Convert To Title Case</td>\n<td>hello, world!</td>\n<td></td>\n</tr>\n<tr>\n<td>${str2} =</td>\n<td>Convert To Title Case</td>\n<td>it's an OK iPhone</td>\n<td>exclude=a, an, the</td>\n</tr>\n<tr>\n<td>${str3} =</td>\n<td>Convert To Title Case</td>\n<td>distance is 1 km.</td>\n<td>exclude=is, km.?</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str1}</td>\n<td>Hello, World!</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str2}</td>\n<td>It's an OK iPhone</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str3}</td>\n<td>Distance is 1 km.</td>\n<td></td>\n</tr>\n</table>\n<p>The reason this keyword does not use Python's standard <a href=\"https://docs.python.org/library/stdtypes.html#str.title\">title()</a> method is that it can yield undesired results, for example, if strings contain upper case letters or special characters like apostrophes. It would, for example, convert \"it's an OK iPhone\" to \"It'S An Ok Iphone\".</p>",
+        "shortdoc": "Converts string to title case.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 83,
+        "doc_fr": "Convertit la chaîne en majuscules.\n\nUtilise l'algorithme suivant :\n\n* Divise la chaîne en mots à partir des caractères d'espacement (espaces, sauts de ligne, etc.).\n* Exclut les mots qui ne sont pas tous en minuscules. Cela préserve, par exemple, « OK » et « iPhone ».\n* Exclut également les mots répertoriés dans l'argument facultatif `exclude`.\n* Met en majuscules le premier caractère alphabétique de chaque mot qui n'a pas été exclu.\n* Joindre tous les mots ensemble afin que les espaces d'origine soient préservés.\n\nLes mots explicitement exclus peuvent être donnés sous forme de liste ou de chaîne avec des mots\nséparés par une virgule et un espace facultatif. Les mots exclus sont en fait\nconsidérés comme des modèles d'expression régulière, il est donc possible d'utiliser\nquelque chose comme \"exemple[.!?]?\" pour faire correspondre le mot \"exemple\" seul et également\ns'il est suivi de \".\", \"!\" ou \"?\". Consultez BuiltIn.Should Match Regexp pour plus\nd'informations sur la syntaxe des expressions régulières Python en général et comment l'utiliser\ndans les données de Robot Framework en particulier.\n\nExemples :\n\n${str1} = | Convertir en casse de titre | bonjour, monde ! | \n---|---|---|--- \n${str2} = | Convertir en casse de titre | c'est un iPhone OK | exclude=a, an, the \n${str3} = | Convertir en casse de titre | la distance est de 1 km. | exclude=is, km.? \nDoit être égal | ${str1} | Bonjour, monde ! | \nDoit être égal | ${str2} | C'est un iPhone OK | \nDoit être égal | ${str3} | La distance est de 1 km. | \n\nLa raison pour laquelle ce mot-clé n'utilise pas la méthode\n[title()](https://docs.python.org/library/stdtypes.html#str.title) standard de Python est\nqu'il peut produire des résultats indésirables, par exemple, si les chaînes contiennent des\nlettres majuscules ou des caractères spéciaux comme des apostrophes. Il convertirait, par exemple,\n\"it's an OK iPhone\" en \"It'S An Ok Iphone\"."
+    },
+    {
+        "name": "Convert To Upper Case",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Converts string to upper case.</p>\n<p>Uses Python's standard <a href=\"https://docs.python.org/library/stdtypes.html#str.upper\">upper()</a> method.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${str1} =</td>\n<td>Convert To Upper Case</td>\n<td>abc</td>\n</tr>\n<tr>\n<td>${str2} =</td>\n<td>Convert To Upper Case</td>\n<td>1a2C3d</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str1}</td>\n<td>ABC</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str2}</td>\n<td>1A2C3D</td>\n</tr>\n</table>",
+        "shortdoc": "Converts string to upper case.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 67,
+        "doc_fr": "Convertit la chaîne en majuscules.\n\nUtilise la méthode standard Python\n[upper()](https://docs.python.org/library/stdtypes.html#str.upper).\n\nExemples :\n\n${str1} = | Convertir en majuscules | abc \n---|---|--- \n${str2} = | Convertir en majuscules | 1a2C3d \nDoit être égal | ${str1} | ABC \nDoit être égal | ${str2} | 1A2C3D"
+    },
+    {
+        "name": "Decode Bytes To String",
+        "args": [
+            {
+                "name": "bytes",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "bytes"
+            },
+            {
+                "name": "encoding",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "encoding"
+            },
+            {
+                "name": "errors",
+                "type": null,
+                "defaultValue": "strict",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "errors=strict"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Decodes the given <code>bytes</code> to a string using the given <code>encoding</code>.</p>\n<p><code>errors</code> argument controls what to do if decoding some bytes fails. All values accepted by <code>decode</code> method in Python are valid, but in practice the following values are most useful:</p>\n<ul>\n<li><code>strict</code>: fail if characters cannot be decoded (default)</li>\n<li><code>ignore</code>: ignore characters that cannot be decoded</li>\n<li><code>replace</code>: replace characters that cannot be decoded with a replacement character</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${string} =</td>\n<td>Decode Bytes To String</td>\n<td>${bytes}</td>\n<td>UTF-8</td>\n<td></td>\n</tr>\n<tr>\n<td>${string} =</td>\n<td>Decode Bytes To String</td>\n<td>${bytes}</td>\n<td>ASCII</td>\n<td>errors=ignore</td>\n</tr>\n</table>\n<p>Use <a href=\"#Encode%20String%20To%20Bytes\" class=\"name\">Encode String To Bytes</a> if you need to convert strings to bytes, and <span class=\"name\">Convert To String</span> in <code>BuiltIn</code> if you need to convert arbitrary objects to strings.</p>",
+        "shortdoc": "Decodes the given ``bytes`` to a string using the given ``encoding``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 163,
+        "doc_fr": "Décode les `bytes` donnés en une chaîne en utilisant le `encoding` donné.\n\nL'argument `errors` contrôle ce qu'il faut faire si le décodage de certains octets échoue. Toutes les valeurs\nacceptées par la méthode `decode` en Python sont valides, mais en pratique les valeurs\nsuivantes sont les plus utiles :\n\n* `strict` : échoue si les caractères ne peuvent pas être décodés (par défaut)\n* `ignore` : ignore les caractères qui ne peuvent pas être décodés\n* `replace` : remplace les caractères qui ne peuvent pas être décodés par un caractère de remplacement\n\nExemples :\n\n${string} = | Décoder les octets en chaîne | ${bytes} | UTF-8 | \n---|---|---|---|--- \n${string} = | Décoder les octets en chaîne | ${bytes} | ASCII | errors=ignore \n\nUtilisez Encode String To Bytes si vous devez convertir des chaînes en octets, et\nConvert To String dans `BuiltIn` si vous devez convertir des objets arbitraires en\nchaînes."
+    },
+    {
+        "name": "Encode String To Bytes",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "encoding",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "encoding"
+            },
+            {
+                "name": "errors",
+                "type": null,
+                "defaultValue": "strict",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "errors=strict"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Encodes the given <code>string</code> to bytes using the given <code>encoding</code>.</p>\n<p><code>errors</code> argument controls what to do if encoding some characters fails. All values accepted by <code>encode</code> method in Python are valid, but in practice the following values are most useful:</p>\n<ul>\n<li><code>strict</code>: fail if characters cannot be encoded (default)</li>\n<li><code>ignore</code>: ignore characters that cannot be encoded</li>\n<li><code>replace</code>: replace characters that cannot be encoded with a replacement character</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${bytes} =</td>\n<td>Encode String To Bytes</td>\n<td>${string}</td>\n<td>UTF-8</td>\n<td></td>\n</tr>\n<tr>\n<td>${bytes} =</td>\n<td>Encode String To Bytes</td>\n<td>${string}</td>\n<td>ASCII</td>\n<td>errors=ignore</td>\n</tr>\n</table>\n<p>Use <span class=\"name\">Convert To Bytes</span> in <code>BuiltIn</code> if you want to create bytes based on character or integer sequences. Use <a href=\"#Decode%20Bytes%20To%20String\" class=\"name\">Decode Bytes To String</a> if you need to convert bytes to strings and <span class=\"name\">Convert To String</span> in <code>BuiltIn</code> if you need to convert arbitrary objects to strings.</p>",
+        "shortdoc": "Encodes the given ``string`` to bytes using the given ``encoding``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 140,
+        "doc_fr": "Encode la chaîne `string` donnée en octets à l'aide de l'encodage` donné.\n\nL'argument `errors` contrôle ce qu'il faut faire si l'encodage de certains caractères échoue. Toutes les\nvaleurs acceptées par la méthode `encode` en Python sont valides, mais en pratique les\nvaleurs suivantes sont les plus utiles :\n\n* `strict` : échoue si les caractères ne peuvent pas être encodés (par défaut)\n* `ignore` : ignore les caractères qui ne peuvent pas être encodés\n* `replace` : remplace les caractères qui ne peuvent pas être encodés par un caractère de remplacement\n\nExemples :\n\n${bytes} = | Encode String To Bytes | ${string} | UTF-8 | \n---|---|---|---|--- \n${bytes} = | Encode String To Bytes | ${string} | ASCII | errors=ignore \n\nUtilisez Convert To Bytes dans `BuiltIn` si vous souhaitez créer des octets basés sur\ndes séquences de caractères ou d'entiers. Utilisez Decode Bytes To String si vous devez\nconvertir des octets en chaînes et Convert To String dans `BuiltIn` si vous devez\nconvertir des objets arbitraires en chaînes."
+    },
+    {
+        "name": "Fetch From Left",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "marker",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "marker"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns contents of the <code>string</code> before the first occurrence of <code>marker</code>.</p>\n<p>If the <code>marker</code> is not found, whole string is returned.</p>\n<p>See also <a href=\"#Fetch%20From%20Right\" class=\"name\">Fetch From Right</a>, <a href=\"#Split%20String\" class=\"name\">Split String</a> and <a href=\"#Split%20String%20From%20Right\" class=\"name\">Split String From Right</a>.</p>",
+        "shortdoc": "Returns contents of the ``string`` before the first occurrence of ``marker``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 578,
+        "doc_fr": "Renvoie le contenu de la chaîne avant la première occurrence de « marker ».\n\nSi le « marker » n'est pas trouvé, la chaîne entière est renvoyée.\n\nVoir également Extraire depuis la droite, Diviser la chaîne et Diviser la chaîne depuis la droite."
+    },
+    {
+        "name": "Fetch From Right",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "marker",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "marker"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns contents of the <code>string</code> after the last occurrence of <code>marker</code>.</p>\n<p>If the <code>marker</code> is not found, whole string is returned.</p>\n<p>See also <a href=\"#Fetch%20From%20Left\" class=\"name\">Fetch From Left</a>, <a href=\"#Split%20String\" class=\"name\">Split String</a> and <a href=\"#Split%20String%20From%20Right\" class=\"name\">Split String From Right</a>.</p>",
+        "shortdoc": "Returns contents of the ``string`` after the last occurrence of ``marker``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 588,
+        "doc_fr": "Renvoie le contenu de la chaîne après la dernière occurrence de « marker ».\n\nSi le « marker » n'est pas trouvé, la chaîne entière est renvoyée.\n\nVoir également Extraire depuis la gauche, Diviser la chaîne et Diviser la chaîne depuis la droite."
+    },
+    {
+        "name": "Format String",
+        "args": [
+            {
+                "name": "template",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_ONLY",
+                "required": true,
+                "repr": "template"
+            },
+            {
+                "name": "",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_ONLY_MARKER",
+                "required": false,
+                "repr": "/"
+            },
+            {
+                "name": "positional",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*positional"
+            },
+            {
+                "name": "named",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_NAMED",
+                "required": false,
+                "repr": "**named"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Formats a <code>template</code> using the given <code>positional</code> and <code>named</code> arguments.</p>\n<p>The template can be either be a string or an absolute path to an existing file. In the latter case the file is read and its contents are used as the template. If the template file contains non-ASCII characters, it must be encoded using UTF-8.</p>\n<p>The template is formatted using Python's <a href=\"https://docs.python.org/library/string.html#format-string-syntax\">format string syntax</a>. Placeholders are marked using <code>{}</code> with possible field name and format specification inside. Literal curly braces can be inserted by doubling them like <span class=\"name\">{{</span> and <span class=\"name\">}}</span>.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${to} =</td>\n<td>Format String</td>\n<td>To: {} &lt;{}&gt;</td>\n<td>${user}</td>\n<td>${email}</td>\n<td></td>\n</tr>\n<tr>\n<td>${to} =</td>\n<td>Format String</td>\n<td>To: {name} &lt;{email}&gt;</td>\n<td>name=${name}</td>\n<td>email=${email}</td>\n<td></td>\n</tr>\n<tr>\n<td>${to} =</td>\n<td>Format String</td>\n<td>To: {user.name} &lt;{user.email}&gt;</td>\n<td>user=${user}</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${xx} =</td>\n<td>Format String</td>\n<td>{:*^30}</td>\n<td>centered</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${yy} =</td>\n<td>Format String</td>\n<td>{0:{width}{base}}</td>\n<td>${42}</td>\n<td>base=X</td>\n<td>width=10</td>\n</tr>\n<tr>\n<td>${zz} =</td>\n<td>Format String</td>\n<td>${CURDIR}/template.txt</td>\n<td>positional</td>\n<td>named=value</td>\n<td></td>\n</tr>\n</table>\n<p>Prior to Robot Framework 7.1, possible equal signs in the template string must be escaped with a backslash like <span class=\"name\">`x\\={}</span>.</p>",
+        "shortdoc": "Formats a ``template`` using the given ``positional`` and ``named`` arguments.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 187,
+        "doc_fr": "Formate un `template` en utilisant les arguments `positional` et `named` donnés.\n\nLe modèle peut être soit une chaîne, soit un chemin absolu vers un\nfichier existant. Dans ce dernier cas, le fichier est lu et son contenu est utilisé comme\nmodèle. Si le fichier modèle contient des caractères non-ASCII, il doit être\nencodé en UTF-8.\n\nLe modèle est formaté en utilisant la [syntaxe de chaîne de\nformat](https://docs.python.org/library/string.html#format-string-syntax) de Python.\nLes espaces réservés sont marqués à l'aide de `{}` avec un nom de champ et une\nspécification de format possibles à l'intérieur. Des accolades littérales peuvent être insérées en les doublant\ncomme {{ et }}.\n\nExemples :\n\n${to} = | Format String | To: {} <{}> | ${user} | ${email} | \n---|---|---|---|---|--- \n${to} = | Format String | To: {name} <{email}> | name=${name} | email=${email} | \n${to} = | Format String | To: {user.name} <{user.email}> | user=${user} | | \n${xx} = | Format String | {:*^30} | centered | | \n${yy} = | Format String | {0:{width}{base}} | ${42} | base=X | width=10 \n${zz} = | Format String | ${CURDIR}/template.txt | positional | named=value | \n\nAvant Robot Framework 7.1, les signes égaux possibles dans la chaîne de modèle doivent\nêtre échappés avec une barre oblique inverse comme `x\\={}."
+    },
+    {
+        "name": "Generate Random String",
+        "args": [
+            {
+                "name": "length",
+                "type": null,
+                "defaultValue": "8",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "length=8"
+            },
+            {
+                "name": "chars",
+                "type": null,
+                "defaultValue": "[LETTERS][NUMBERS]",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "chars=[LETTERS][NUMBERS]"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Generates a string with a desired <code>length</code> from the given <code>chars</code>.</p>\n<p><code>length</code> can be given as a number, a string representation of a number, or as a range of numbers, such as <code>5-10</code>. When a range of values is given the range will be selected by random within the range.</p>\n<p>The population sequence <code>chars</code> contains the characters to use when generating the random string. It can contain any characters, and it is possible to use special markers explained in the table below:</p>\n<table border=\"1\">\n<tr>\n<th>Marker</th>\n<th>Explanation</th>\n</tr>\n<tr>\n<td><code>[LOWER]</code></td>\n<td>Lowercase ASCII characters from <code>a</code> to <code>z</code>.</td>\n</tr>\n<tr>\n<td><code>[UPPER]</code></td>\n<td>Uppercase ASCII characters from <code>A</code> to <code>Z</code>.</td>\n</tr>\n<tr>\n<td><code>[LETTERS]</code></td>\n<td>Lowercase and uppercase ASCII characters.</td>\n</tr>\n<tr>\n<td><code>[NUMBERS]</code></td>\n<td>Numbers from 0 to 9.</td>\n</tr>\n</table>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${ret} =</td>\n<td>Generate Random String</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${low} =</td>\n<td>Generate Random String</td>\n<td>12</td>\n<td>[LOWER]</td>\n</tr>\n<tr>\n<td>${bin} =</td>\n<td>Generate Random String</td>\n<td>8</td>\n<td>01</td>\n</tr>\n<tr>\n<td>${hex} =</td>\n<td>Generate Random String</td>\n<td>4</td>\n<td>[NUMBERS]abcdef</td>\n</tr>\n<tr>\n<td>${rnd} =</td>\n<td>Generate Random String</td>\n<td>5-10</td>\n<td># Generates a string 5 to 10 characters long</td>\n</tr>\n</table>\n<p>Giving <code>length</code> as a range of values is new in Robot Framework 5.0.</p>",
+        "shortdoc": "Generates a string with a desired ``length`` from the given ``chars``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 598,
+        "doc_fr": "Génère une chaîne avec une longueur souhaitée à partir des caractères donnés.\n\nLa longueur peut être donnée sous forme de nombre, de représentation sous forme de chaîne d'un nombre ou\nd'une plage de nombres, telle que « 5-10 ». Lorsqu'une plage de valeurs est donnée, la plage\nsera sélectionnée de manière aléatoire dans la plage.\n\nLa séquence de population « caractères » contient les caractères à utiliser lors de la\ngénération de la chaîne aléatoire. Elle peut contenir n'importe quel caractère et il est possible d'utiliser\ndes marqueurs spéciaux expliqués dans le tableau ci-dessous :\n\nMarqueur | Explication \n---|--- \n`[MINUSCLE]` | Caractères ASCII minuscules de « a » à « z ». \n`[MAJUSCULE]` | Caractères ASCII majuscules de « A » à « Z ». \n`[LETTRES]` | Caractères ASCII minuscules et majuscules. \n`[NUMÉROS]` | Nombres de 0 à 9. \n\nExemples :\n\n${ret} = | Générer une chaîne aléatoire | | \n---|---|---|--- \n${low} = | Générer une chaîne aléatoire | 12 | [LOWER] \n${bin} = | Générer une chaîne aléatoire | 8 | 01 \n${hex} = | Générer une chaîne aléatoire | 4 | [NUMBERS]abcdef \n${rnd} = | Générer une chaîne aléatoire | 5-10 | # Génère une chaîne de 5 à 10 caractères de long \n\nDonner `length` comme plage de valeurs est une nouveauté dans Robot Framework 5.0."
+    },
+    {
+        "name": "Get Line",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "line_number",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "line_number"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns the specified line from the given <code>string</code>.</p>\n<p>Line numbering starts from 0, and it is possible to use negative indices to refer to lines from the end. The line is returned without the newline character.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${first} =</td>\n<td>Get Line</td>\n<td>${string}</td>\n<td>0</td>\n</tr>\n<tr>\n<td>${2nd last} =</td>\n<td>Get Line</td>\n<td>${string}</td>\n<td>-2</td>\n</tr>\n</table>\n<p>Use <a href=\"#Split%20To%20Lines\" class=\"name\">Split To Lines</a> if all lines are needed.</p>",
+        "shortdoc": "Returns the specified line from the given ``string``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 253,
+        "doc_fr": "Renvoie la ligne spécifiée à partir de la chaîne donnée.\n\nLa numérotation des lignes commence à 0 et il est possible d'utiliser des indices négatifs\npour faire référence aux lignes à partir de la fin. La ligne est renvoyée sans le caractère de nouvelle ligne.\n\nExemples :\n\n${first} = | Get Line | ${string} | 0 \n---|---|---|--- \n${2nd last} = | Get Line | ${string} | -2 \n\nUtilisez Split To Lines si toutes les lignes sont nécessaires."
+    },
+    {
+        "name": "Get Line Count",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns and logs the number of lines in the given string.</p>",
+        "shortdoc": "Returns and logs the number of lines in the given string.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 220,
+        "doc_fr": "Renvoie et enregistre le nombre de lignes dans la chaîne donnée."
+    },
+    {
+        "name": "Get Lines Containing String",
+        "args": [
+            {
+                "name": "string",
+                "type": {
+                    "name": "str",
+                    "typedoc": "string",
+                    "nested": [],
+                    "union": false
+                },
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string: str"
+            },
+            {
+                "name": "pattern",
+                "type": {
+                    "name": "str",
+                    "typedoc": "string",
+                    "nested": [],
+                    "union": false
+                },
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "pattern: str"
+            },
+            {
+                "name": "case_insensitive",
+                "type": {
+                    "name": "Union",
+                    "typedoc": null,
+                    "nested": [
+                        {
+                            "name": "bool",
+                            "typedoc": "boolean",
+                            "nested": [],
+                            "union": false
+                        },
+                        {
+                            "name": "None",
+                            "typedoc": "None",
+                            "nested": [],
+                            "union": false
+                        }
+                    ],
+                    "union": true
+                },
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "case_insensitive: bool | None = None"
+            },
+            {
+                "name": "ignore_case",
+                "type": {
+                    "name": "bool",
+                    "typedoc": "boolean",
+                    "nested": [],
+                    "union": false
+                },
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "ignore_case: bool = False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns lines of the given <code>string</code> that contain the <code>pattern</code>.</p>\n<p>The <code>pattern</code> is always considered to be a normal string, not a glob or regexp pattern. A line matches if the <code>pattern</code> is found anywhere on it.</p>\n<p>The match is case-sensitive by default, but that can be changed by giving <code>ignore_case</code> a true value. This option is new in Robot Framework 7.0, but with older versions it is possible to use the nowadays deprecated <code>case_insensitive</code> argument.</p>\n<p>Lines are returned as a string with lines joined together with a newline. Possible trailing newline is never returned. The number of matching lines is automatically logged.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${lines} =</td>\n<td>Get Lines Containing String</td>\n<td>${result}</td>\n<td>An example</td>\n<td></td>\n</tr>\n<tr>\n<td>${ret} =</td>\n<td>Get Lines Containing String</td>\n<td>${ret}</td>\n<td>FAIL</td>\n<td>ignore_case=True</td>\n</tr>\n</table>\n<p>See <a href=\"#Get%20Lines%20Matching%20Pattern\" class=\"name\">Get Lines Matching Pattern</a> and <a href=\"#Get%20Lines%20Matching%20Regexp\" class=\"name\">Get Lines Matching Regexp</a> if you need more complex pattern matching.</p>",
+        "shortdoc": "Returns lines of the given ``string`` that contain the ``pattern``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 269,
+        "doc_fr": "Renvoie les lignes de la chaîne donnée qui contiennent le motif.\n\nLe motif est toujours considéré comme une chaîne normale, pas un motif global ou regexp.\nUne ligne correspond si le motif est trouvé n'importe où dessus.\n\nLa correspondance est sensible à la casse par défaut, mais cela peut être modifié en donnant à `ignore_case` une valeur true. Cette option est nouvelle dans Robot Framework 7.0, mais\navec les versions plus anciennes, il est possible d'utiliser l'argument `case_insensitive`, aujourd'hui obsolète.\n\nLes lignes sont renvoyées sous forme de chaîne avec des lignes jointes par un saut de ligne.\nUn saut de ligne final éventuel n'est jamais renvoyé. Le nombre de lignes correspondantes est\nautomatiquement enregistré.\n\nExemples :\n\n${lines} = | Obtenir les lignes contenant la chaîne | ${result} | Un exemple | \n---|---|---|---|--- \n${ret} = | Obtenir les lignes contenant la chaîne | ${ret} | FAIL | ignore_case=True \n\nVoir Obtenir des lignes correspondant au modèle et Obtenir des lignes correspondant à l'expression régulière si vous avez besoin d'une correspondance de modèle plus complexe."
+    },
+    {
+        "name": "Get Lines Matching Pattern",
+        "args": [
+            {
+                "name": "string",
+                "type": {
+                    "name": "str",
+                    "typedoc": "string",
+                    "nested": [],
+                    "union": false
+                },
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string: str"
+            },
+            {
+                "name": "pattern",
+                "type": {
+                    "name": "str",
+                    "typedoc": "string",
+                    "nested": [],
+                    "union": false
+                },
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "pattern: str"
+            },
+            {
+                "name": "case_insensitive",
+                "type": {
+                    "name": "Union",
+                    "typedoc": null,
+                    "nested": [
+                        {
+                            "name": "bool",
+                            "typedoc": "boolean",
+                            "nested": [],
+                            "union": false
+                        },
+                        {
+                            "name": "None",
+                            "typedoc": "None",
+                            "nested": [],
+                            "union": false
+                        }
+                    ],
+                    "union": true
+                },
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "case_insensitive: bool | None = None"
+            },
+            {
+                "name": "ignore_case",
+                "type": {
+                    "name": "bool",
+                    "typedoc": "boolean",
+                    "nested": [],
+                    "union": false
+                },
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "ignore_case: bool = False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns lines of the given <code>string</code> that match the <code>pattern</code>.</p>\n<p>The <code>pattern</code> is a <i>glob pattern</i> where:</p>\n<table border=\"1\">\n<tr>\n<td><code>*</code></td>\n<td>matches everything</td>\n</tr>\n<tr>\n<td><code>?</code></td>\n<td>matches any single character</td>\n</tr>\n<tr>\n<td><code>[chars]</code></td>\n<td>matches any character inside square brackets (e.g. <code>[abc]</code> matches either <code>a</code>, <code>b</code> or <code>c</code>)</td>\n</tr>\n<tr>\n<td><code>[!chars]</code></td>\n<td>matches any character not inside square brackets</td>\n</tr>\n</table>\n<p>A line matches only if it matches the <code>pattern</code> fully.</p>\n<p>The match is case-sensitive by default, but that can be changed by giving <code>ignore_case</code> a true value. This option is new in Robot Framework 7.0, but with older versions it is possible to use the nowadays deprecated <code>case_insensitive</code> argument.</p>\n<p>Lines are returned as a string with lines joined together with a newline. Possible trailing newline is never returned. The number of matching lines is automatically logged.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${lines} =</td>\n<td>Get Lines Matching Pattern</td>\n<td>${result}</td>\n<td>Wild???? example</td>\n<td></td>\n</tr>\n<tr>\n<td>${ret} =</td>\n<td>Get Lines Matching Pattern</td>\n<td>${ret}</td>\n<td>FAIL: *</td>\n<td>ignore_case=True</td>\n</tr>\n</table>\n<p>See <a href=\"#Get%20Lines%20Matching%20Regexp\" class=\"name\">Get Lines Matching Regexp</a> if you need more complex patterns and <a href=\"#Get%20Lines%20Containing%20String\" class=\"name\">Get Lines Containing String</a> if searching literal strings is enough.</p>",
+        "shortdoc": "Returns lines of the given ``string`` that match the ``pattern``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 303,
+        "doc_fr": "Renvoie les lignes de la chaîne donnée qui correspondent au motif.\n\nLe motif est un motif _glob_ où :\n\n`*` | correspond à tout \n---|--- \n`?` | correspond à n'importe quel caractère \n`[chars]` | correspond à n'importe quel caractère entre crochets (par exemple, `[abc]` correspond à `a`, `b` ou `c`) \n`[!chars]` | correspond à n'importe quel caractère non entre crochets \n\nUne ligne ne correspond que si elle correspond entièrement au motif.\n\nLa correspondance est sensible à la casse par défaut, mais cela peut être modifié en donnant à `ignore_case` une valeur true. Cette option est nouvelle dans Robot Framework 7.0, mais\navec les versions plus anciennes, il est possible d'utiliser l'argument `case_insensitive`, aujourd'hui obsolète.\n\nLes lignes sont renvoyées sous forme de chaîne avec des lignes jointes par une nouvelle ligne.\nUne éventuelle nouvelle ligne de fin n'est jamais renvoyée. Le nombre de lignes correspondantes est\nautomatiquement enregistré.\n\nExemples :\n\n${lines} = | Obtenir les lignes correspondant au modèle | ${result} | Wild???? example | \n---|---|---|---|--- \n${ret} = | Obtenir les lignes correspondant au modèle | ${ret} | FAIL : * | ignore_case=True \n\nVoir Obtenir les lignes correspondant à l'expression régulière si vous avez besoin de modèles plus complexes et Obtenir les lignes\ncontenant une chaîne si la recherche de chaînes littérales est suffisante."
+    },
+    {
+        "name": "Get Lines Matching Regexp",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "pattern"
+            },
+            {
+                "name": "partial_match",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "partial_match=False"
+            },
+            {
+                "name": "flags",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "flags=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns lines of the given <code>string</code> that match the regexp <code>pattern</code>.</p>\n<p>See <span class=\"name\">BuiltIn.Should Match Regexp</span> for more information about Python regular expression syntax in general and how to use it in Robot Framework data in particular.</p>\n<p>Lines match only if they match the pattern fully by default, but partial matching can be enabled by giving the <code>partial_match</code> argument a true value.</p>\n<p>If the pattern is empty, it matches only empty lines by default. When partial matching is enabled, empty pattern matches all lines.</p>\n<p>Possible flags altering how the expression is parsed (e.g. <code>re.IGNORECASE</code>, <code>re.VERBOSE</code>) can be given using the <code>flags</code> argument (e.g. <code>flags=IGNORECASE | VERBOSE</code>) or embedded to the pattern (e.g. <code>(?ix)pattern</code>).</p>\n<p>Lines are returned as one string concatenated back together with newlines. Possible trailing newline is never returned. The number of matching lines is automatically logged.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${lines} =</td>\n<td>Get Lines Matching Regexp</td>\n<td>${result}</td>\n<td>Reg\\\\w{3} example</td>\n<td></td>\n</tr>\n<tr>\n<td>${lines} =</td>\n<td>Get Lines Matching Regexp</td>\n<td>${result}</td>\n<td>Reg\\\\w{3} example</td>\n<td>partial_match=true</td>\n</tr>\n<tr>\n<td>${ret} =</td>\n<td>Get Lines Matching Regexp</td>\n<td>${ret}</td>\n<td>(?i)FAIL: .*</td>\n<td></td>\n</tr>\n<tr>\n<td>${ret} =</td>\n<td>Get Lines Matching Regexp</td>\n<td>${ret}</td>\n<td>FAIL: .*</td>\n<td>flags=IGNORECASE</td>\n</tr>\n</table>\n<p>See <a href=\"#Get%20Lines%20Matching%20Pattern\" class=\"name\">Get Lines Matching Pattern</a> and <a href=\"#Get%20Lines%20Containing%20String\" class=\"name\">Get Lines Containing String</a> if you do not need the full regular expression powers (and complexity).</p>\n<p>The <code>flags</code> argument is new in Robot Framework 6.0.</p>",
+        "shortdoc": "Returns lines of the given ``string`` that match the regexp ``pattern``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 342,
+        "doc_fr": "Renvoie les lignes de la chaîne donnée qui correspondent à l'expression régulière \"pattern\".\n\nVoir BuiltIn.Should Match Regexp pour plus d'informations sur la syntaxe des expressions régulières Python en général et comment l'utiliser dans les données Robot Framework en\nparticulier.\n\nLes lignes correspondent uniquement si elles correspondent entièrement au modèle par défaut, mais la correspondance\npartielle peut être activée en donnant à l'argument `partial_match` une valeur true.\n\nSi le modèle est vide, il correspond uniquement aux lignes vides par défaut. Lorsque la correspondance\npartielle est activée, le modèle vide correspond à toutes les lignes.\n\nLes indicateurs possibles modifiant la façon dont l'expression est analysée (par exemple `re.IGNORECASE`, `re.VERBOSE`) peuvent être donnés à l'aide de l'argument `flags` (par exemple `flags=IGNORECASE | VERBOSE`) ou intégrés au modèle (par exemple `(?ix)pattern`).\n\nLes lignes sont renvoyées sous forme d'une chaîne concaténée avec des nouvelles lignes.\nUn saut de ligne final possible n'est jamais renvoyé. Le nombre de lignes correspondantes est\nautomatiquement enregistré.\n\nExemples :\n\n${lines} = | Obtenir les lignes correspondant à l'expression régulière | ${result} | Exemple Reg\\\\\\w{3} | \n---|---|---|---|--- \n${lines} = | Obtenir les lignes correspondant à l'expression régulière | ${result} | Exemple Reg\\\\\\w{3} | partial_match=true \n${ret} = | Obtenir les lignes correspondant à l'expression régulière | ${ret} | (?i)FAIL : .* | \n${ret} = | Obtenir les lignes correspondant à l'expression régulière | ${ret} | FAIL : .* | flags=IGNORECASE \n\nVoir Obtenir les lignes correspondant au motif et Obtenir les lignes contenant une chaîne si vous n'avez pas\nbesoin de toutes les puissances (et de la complexité) des expressions régulières.\n\nL'argument `flags` est nouveau dans Robot Framework 6.0."
+    },
+    {
+        "name": "Get Regexp Matches",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "pattern"
+            },
+            {
+                "name": "groups",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*groups"
+            },
+            {
+                "name": "flags",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "NAMED_ONLY",
+                "required": false,
+                "repr": "flags=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns a list of all non-overlapping matches in the given string.</p>\n<p><code>string</code> is the string to find matches from and <code>pattern</code> is the regular expression. See <span class=\"name\">BuiltIn.Should Match Regexp</span> for more information about Python regular expression syntax in general and how to use it in Robot Framework data in particular.</p>\n<p>If no groups are used, the returned list contains full matches. If one group is used, the list contains only contents of that group. If multiple groups are used, the list contains tuples that contain individual group contents. All groups can be given as indexes (starting from 1) and named groups also as names.</p>\n<p>Possible flags altering how the expression is parsed (e.g. <code>re.IGNORECASE</code>, <code>re.MULTILINE</code>) can be given using the <code>flags</code> argument (e.g. <code>flags=IGNORECASE | MULTILINE</code>) or embedded to the pattern (e.g. <code>(?im)pattern</code>).</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${no match} =</td>\n<td>Get Regexp Matches</td>\n<td>the string</td>\n<td>xxx</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${matches} =</td>\n<td>Get Regexp Matches</td>\n<td>the string</td>\n<td>t..</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${matches} =</td>\n<td>Get Regexp Matches</td>\n<td>the string</td>\n<td>T..</td>\n<td>flags=IGNORECASE</td>\n<td></td>\n</tr>\n<tr>\n<td>${one group} =</td>\n<td>Get Regexp Matches</td>\n<td>the string</td>\n<td>t(..)</td>\n<td>1</td>\n<td></td>\n</tr>\n<tr>\n<td>${named group} =</td>\n<td>Get Regexp Matches</td>\n<td>the string</td>\n<td>t(?P&lt;name&gt;..)</td>\n<td>name</td>\n<td></td>\n</tr>\n<tr>\n<td>${two groups} =</td>\n<td>Get Regexp Matches</td>\n<td>the string</td>\n<td>t(.)(.)</td>\n<td>1</td>\n<td>2</td>\n</tr>\n</table>\n<p>=&gt;</p>\n<pre>\n${no match} = []\n${matches} = ['the', 'tri']\n${one group} = ['he', 'ri']\n${named group} = ['he', 'ri']\n${two groups} = [('h', 'e'), ('r', 'i')]\n</pre>\n<p>The <code>flags</code> argument is new in Robot Framework 6.0.</p>",
+        "shortdoc": "Returns a list of all non-overlapping matches in the given string.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 386,
+        "doc_fr": "Renvoie une liste de toutes les correspondances non superposées dans la chaîne donnée.\n\n`string` est la chaîne à partir de laquelle rechercher des correspondances et `pattern` est l'expression\nrégulière. Voir BuiltIn.Should Match Regexp pour plus d'informations sur la\nsyntaxe des expressions régulières Python en général et comment l'utiliser dans les données\nRobot Framework en particulier.\n\nSi aucun groupe n'est utilisé, la liste renvoyée contient des correspondances complètes. Si un groupe\nest utilisé, la liste contient uniquement le contenu de ce groupe. Si plusieurs\ngroupes sont utilisés, la liste contient des tuples qui contiennent le contenu de groupes individuels. Tous\nles groupes peuvent être donnés sous forme d'index (à partir de 1) et les groupes nommés également sous forme\nde noms.\n\nLes indicateurs possibles modifiant la manière dont l'expression est analysée (par exemple `re.IGNORECASE`, `re.MULTILINE`) peuvent être donnés en utilisant l'argument `flags` (par exemple `flags=IGNORECASE | MULTILINE`) ou intégrés au motif (par exemple `(?im)pattern`).\n\nExemples :\n\n${no match} = | Obtenir les correspondances d'expressions régulières | la chaîne | xxx | | \n---|---|---|---|---|--- \n${matches} = | Obtenir les correspondances d'expressions régulières | la chaîne | t.. | | \n${matches} = | Obtenir les correspondances d'expressions régulières | la chaîne | T.. | flags=IGNORECASE | \n${one group} = | Obtenir les correspondances d'expressions régulières | la chaîne | t(..) | 1 | \n${named group} = | Obtenir les correspondances d'expressions régulières | la chaîne | t(?P<name>..) | nom | \n${deux groupes} = | Obtenir les correspondances Regexp | la chaîne | t(.)(.) | 1 | 2 \n\n=>\n\n${aucune correspondance} = []\n${correspondances} = ['le', 'tri']\n${un groupe} = ['il', 'ri']\n${groupe nommé} = ['il', 'ri']\n${deux groupes} = [('h', 'e'), ('r', 'i')]\n\nL'argument `flags` est nouveau dans Robot Framework 6.0."
+    },
+    {
+        "name": "Get Substring",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "start",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "start"
+            },
+            {
+                "name": "end",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "end=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns a substring from <code>start</code> index to <code>end</code> index.</p>\n<p>The <code>start</code> index is inclusive and <code>end</code> is exclusive. Indexing starts from 0, and it is possible to use negative indices to refer to characters from the end.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${ignore first} =</td>\n<td>Get Substring</td>\n<td>${string}</td>\n<td>1</td>\n<td></td>\n</tr>\n<tr>\n<td>${ignore last} =</td>\n<td>Get Substring</td>\n<td>${string}</td>\n<td>0</td>\n<td>-1</td>\n</tr>\n<tr>\n<td>${5th to 10th} =</td>\n<td>Get Substring</td>\n<td>${string}</td>\n<td>4</td>\n<td>10</td>\n</tr>\n<tr>\n<td>${first two} =</td>\n<td>Get Substring</td>\n<td>${string}</td>\n<td>0</td>\n<td>1</td>\n</tr>\n<tr>\n<td>${last two} =</td>\n<td>Get Substring</td>\n<td>${string}</td>\n<td>-2</td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Returns a substring from ``start`` index to ``end`` index.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 641,
+        "doc_fr": "Renvoie une sous-chaîne de l'index `start` à l'index `end`.\n\nL'index `start` est inclusif et `end` est exclusif. L'indexation commence à 0,\net il est possible d'utiliser des indices négatifs pour faire référence aux caractères à partir de la\nfin.\n\nExemples :\n\n${ignore first} = | Get Substring | ${string} | 1 | \n---|---|---|---|--- \n${ignore last} = | Get Substring | ${string} | 0 | -1 \n${5th to 10th} = | Get Substring | ${string} | 4 | 10 \n${first two} = | Get Substring | ${string} | 0 | 1 \n${last two} = | Get Substring | ${string} | -2 |"
+    },
+    {
+        "name": "Remove String",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "removables",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*removables"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Removes all <code>removables</code> from the given <code>string</code>.</p>\n<p><code>removables</code> are used as literal strings. Each removable will be matched to a temporary string from which preceding removables have been already removed. See second example below.</p>\n<p>Use <a href=\"#Remove%20String%20Using%20Regexp\" class=\"name\">Remove String Using Regexp</a> if more powerful pattern matching is needed. If only a certain number of matches should be removed, <a href=\"#Replace%20String\" class=\"name\">Replace String</a> or <a href=\"#Replace%20String%20Using%20Regexp\" class=\"name\">Replace String Using Regexp</a> can be used.</p>\n<p>A modified version of the string is returned and the original string is not altered.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${str} =</td>\n<td>Remove String</td>\n<td>Robot Framework</td>\n<td>work</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str}</td>\n<td>Robot Frame</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${str} =</td>\n<td>Remove String</td>\n<td>Robot Framework</td>\n<td>o</td>\n<td>bt</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str}</td>\n<td>R Framewrk</td>\n<td></td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Removes all ``removables`` from the given ``string``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 483,
+        "doc_fr": "Supprime tous les `removables` de la `string` donnée.\n\nLes `removables` sont utilisés comme des chaînes littérales. Chaque amovible sera associé à une\nchaîne temporaire à partir de laquelle les amovibles précédents ont déjà été supprimés.\nVoir le deuxième exemple ci-dessous.\n\nUtilisez Remove String Using Regexp si une correspondance de motifs plus puissante est nécessaire. Si\nseul un certain nombre de correspondances doivent être supprimées, Remplacer la chaîne ou Remplacer la\nchaîne à l'aide de Regexp peuvent être utilisés.\n\nUne version modifiée de la chaîne est renvoyée et la chaîne d'origine n'est\npas modifiée.\n\nExemples :\n\n${str} = | Remove String | Robot Framework | work | \n---|---|---|---|--- \nDoit être égal | ${str} | Robot Frame | | \n${str} = | Remove String | Robot Framework | o | bt \nDoit être égal | ${str} | R Framewrk | |"
+    },
+    {
+        "name": "Remove String Using Regexp",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "patterns",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*patterns"
+            },
+            {
+                "name": "flags",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "NAMED_ONLY",
+                "required": false,
+                "repr": "flags=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Removes <code>patterns</code> from the given <code>string</code>.</p>\n<p>This keyword is otherwise identical to <a href=\"#Remove%20String\" class=\"name\">Remove String</a>, but the <code>patterns</code> to search for are considered to be a regular expression. See <a href=\"#Replace%20String%20Using%20Regexp\" class=\"name\">Replace String Using Regexp</a> for more information about the regular expression syntax. That keyword can also be used if there is a need to remove only a certain number of occurrences.</p>\n<p>Possible flags altering how the expression is parsed (e.g. <code>re.IGNORECASE</code>, <code>re.MULTILINE</code>) can be given using the <code>flags</code> argument (e.g. <code>flags=IGNORECASE | MULTILINE</code>) or embedded to the pattern (e.g. <code>(?im)pattern</code>).</p>\n<p>The <code>flags</code> argument is new in Robot Framework 6.0.</p>",
+        "shortdoc": "Removes ``patterns`` from the given ``string``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 507,
+        "doc_fr": "Supprime les « patterns » de la « chaîne » donnée.\n\nCe mot-clé est par ailleurs identique à Supprimer la chaîne, mais les « patterns » à\nrechercher sont considérés comme une expression régulière. Voir Remplacer une chaîne à l'aide de\nRegexp pour plus d'informations sur la syntaxe des expressions régulières. Ce mot-clé\npeut également être utilisé s'il est nécessaire de supprimer uniquement un certain nombre\nd'occurrences.\n\nLes indicateurs possibles modifiant la façon dont l'expression est analysée (par exemple, « re.IGNORECASE », « re.MULTILINE ») peuvent être donnés à l'aide de l'argument « flags » (par exemple, « flags=IGNORECASE | MULTILINE ») ou intégrés au modèle (par exemple, « (?im)pattern »).\n\nL'argument « flags » est nouveau dans Robot Framework 6.0."
+    },
+    {
+        "name": "Replace String",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "search_for",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "search_for"
+            },
+            {
+                "name": "replace_with",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "replace_with"
+            },
+            {
+                "name": "count",
+                "type": null,
+                "defaultValue": "-1",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "count=-1"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Replaces <code>search_for</code> in the given <code>string</code> with <code>replace_with</code>.</p>\n<p><code>search_for</code> is used as a literal string. See <a href=\"#Replace%20String%20Using%20Regexp\" class=\"name\">Replace String Using Regexp</a> if more powerful pattern matching is needed. If you need to just remove a string see <a href=\"#Remove%20String\" class=\"name\">Remove String</a>.</p>\n<p>If the optional argument <code>count</code> is given, only that many occurrences from left are replaced. Negative <code>count</code> means that all occurrences are replaced (default behaviour) and zero means that nothing is done.</p>\n<p>A modified version of the string is returned and the original string is not altered.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${str} =</td>\n<td>Replace String</td>\n<td>Hello, world!</td>\n<td>world</td>\n<td>tellus</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str}</td>\n<td>Hello, tellus!</td>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${str} =</td>\n<td>Replace String</td>\n<td>Hello, world!</td>\n<td>l</td>\n<td>${EMPTY}</td>\n<td>count=1</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${str}</td>\n<td>Helo, world!</td>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Replaces ``search_for`` in the given ``string`` with ``replace_with``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 431,
+        "doc_fr": "Remplace `search_for` dans la `string` donnée par `replace_with`.\n\n`search_for` est utilisé comme chaîne littérale. Voir Remplacer une chaîne à l'aide d'une expression régulière si\nune correspondance de motifs plus puissante est nécessaire. Si vous devez simplement supprimer une chaîne\nvoir Supprimer une chaîne.\n\nSi l'argument optionnel `count` est donné, seules les occurrences à partir de\nla gauche sont remplacées. Un `count` négatif signifie que toutes les occurrences sont remplacées\n(comportement par défaut) et zéro signifie que rien n'est fait.\n\nUne version modifiée de la chaîne est renvoyée et la chaîne d'origine n'est\npas modifiée.\n\nExemples :\n\n${str} = | Remplacer la chaîne | Bonjour, monde ! | monde | tellus | \n---|---|---|---|---|--- \nDoit être égal | ${str} | Bonjour, tellus ! | | | \n${str} = | Remplacer la chaîne | Bonjour, monde ! | l | ${EMPTY} | count=1 \nDoit être égal | ${str} | Salut tout le monde ! | | |"
+    },
+    {
+        "name": "Replace String Using Regexp",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "pattern"
+            },
+            {
+                "name": "replace_with",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "replace_with"
+            },
+            {
+                "name": "count",
+                "type": null,
+                "defaultValue": "-1",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "count=-1"
+            },
+            {
+                "name": "flags",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "flags=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Replaces <code>pattern</code> in the given <code>string</code> with <code>replace_with</code>.</p>\n<p>This keyword is otherwise identical to <a href=\"#Replace%20String\" class=\"name\">Replace String</a>, but the <code>pattern</code> to search for is considered to be a regular expression.  See <span class=\"name\">BuiltIn.Should Match Regexp</span> for more information about Python regular expression syntax in general and how to use it in Robot Framework data in particular.</p>\n<p>Possible flags altering how the expression is parsed (e.g. <code>re.IGNORECASE</code>, <code>re.MULTILINE</code>) can be given using the <code>flags</code> argument (e.g. <code>flags=IGNORECASE | MULTILINE</code>) or embedded to the pattern (e.g. <code>(?im)pattern</code>).</p>\n<p>If you need to just remove a string see <a href=\"#Remove%20String%20Using%20Regexp\" class=\"name\">Remove String Using Regexp</a>.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${str} =</td>\n<td>Replace String Using Regexp</td>\n<td>${str}</td>\n<td>20\\\\d\\\\d-\\\\d\\\\d-\\\\d\\\\d</td>\n<td>&lt;DATE&gt;</td>\n<td></td>\n</tr>\n<tr>\n<td>${str} =</td>\n<td>Replace String Using Regexp</td>\n<td>${str}</td>\n<td>(Hello|Hi)</td>\n<td>${EMPTY}</td>\n<td>count=1</td>\n</tr>\n</table>\n<p>The <code>flags</code> argument is new in Robot Framework 6.0.</p>",
+        "shortdoc": "Replaces ``pattern`` in the given ``string`` with ``replace_with``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 455,
+        "doc_fr": "Remplace `pattern` dans la `string` donnée par `replace_with`.\n\nCe mot-clé est par ailleurs identique à Replace String, mais le `pattern` à\nrechercher est considéré comme une expression régulière. Voir BuiltIn.Should Match\nRegexp pour plus d'informations sur la syntaxe des expressions régulières Python en général\net comment l'utiliser dans les données de Robot Framework en particulier.\n\nLes indicateurs possibles modifiant la façon dont l'expression est analysée (par exemple `re.IGNORECASE`, `re.MULTILINE`) peuvent être donnés à l'aide de l'argument `flags` (par exemple `flags=IGNORECASE | MULTILINE`) ou intégrés au modèle (par exemple `(?im)pattern`).\n\nSi vous devez simplement supprimer une chaîne, consultez Supprimer une chaîne à l'aide de Regexp.\n\nExemples :\n\n${str} = | Remplacer la chaîne à l'aide de Regexp | ${str} | 20\\\\\\d\\\\\\d-\\\\\\d\\\\\\d-\\\\\\d\\\\\\d | <DATE> | \n---|---|---|---|---|--- \n${str} = | Remplacer la chaîne par une expression régulière | ${str} | (Bonjour|Salut) | ${EMPTY} | count=1 \n\nL'argument `flags` est nouveau dans Robot Framework 6.0."
+    },
+    {
+        "name": "Should Be Byte String",
+        "args": [
+            {
+                "name": "item",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "item"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the given <code>item</code> is not a byte string.</p>\n<p>Use <a href=\"#Should%20Be%20String\" class=\"name\">Should Be String</a> if you want to verify the <code>item</code> is a string.</p>\n<p>The default error message can be overridden with the optional <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the given ``item`` is not a byte string.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 714,
+        "doc_fr": "Échoue si l'élément donné n'est pas une chaîne d'octets.\n\nUtilisez Should Be String si vous souhaitez vérifier que l'élément est une chaîne.\n\nLe message d'erreur par défaut peut être remplacé par l'argument facultatif « msg »."
+    },
+    {
+        "name": "Should Be Lower Case",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the given <code>string</code> is not in lower case.</p>\n<p>For example, <code>'string'</code> and <code>'with specials!'</code> would pass, and <code>'String'</code>, <code>''</code> and <code>' '</code> would fail.</p>\n<p>The default error message can be overridden with the optional <code>msg</code> argument.</p>\n<p>See also <a href=\"#Should%20Be%20Upper%20Case\" class=\"name\">Should Be Upper Case</a> and <a href=\"#Should%20Be%20Title%20Case\" class=\"name\">Should Be Title Case</a>.</p>",
+        "shortdoc": "Fails if the given ``string`` is not in lower case.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 724,
+        "doc_fr": "Échoue si la chaîne donnée n'est pas en minuscules.\n\nPar exemple, « string » et « with specials! » réussiraient, et « String »,\n« '' » et « ' » échoueraient.\n\nLe message d'erreur par défaut peut être remplacé par l'argument facultatif « msg ».\n\nVoir également Doit être en majuscules et Doit être en majuscules."
+    },
+    {
+        "name": "Should Be String",
+        "args": [
+            {
+                "name": "item",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "item"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the given <code>item</code> is not a string.</p>\n<p>The default error message can be overridden with the optional <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the given ``item`` is not a string.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 690,
+        "doc_fr": "Échoue si l'élément « item » donné n'est pas une chaîne.\n\nLe message d'erreur par défaut peut être remplacé par l'argument facultatif « msg »."
+    },
+    {
+        "name": "Should Be Title Case",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            },
+            {
+                "name": "exclude",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if given <code>string</code> is not title.</p>\n<p><code>string</code> is a title cased string if there is at least one upper case letter in each word.</p>\n<p>For example, <code>'This Is Title'</code> and <code>'OK, Give Me My iPhone'</code> would pass. <code>'all words lower'</code> and <code>'Word In lower'</code> would fail.</p>\n<p>This logic changed in Robot Framework 4.0 to be compatible with <a href=\"#Convert%20To%20Title%20Case\" class=\"name\">Convert to Title Case</a>. See <a href=\"#Convert%20To%20Title%20Case\" class=\"name\">Convert to Title Case</a> for title case algorithm and reasoning.</p>\n<p>The default error message can be overridden with the optional <code>msg</code> argument.</p>\n<p>Words can be explicitly excluded with the optional <code>exclude</code> argument.</p>\n<p>Explicitly excluded words can be given as a list or as a string with words separated by a comma and an optional space. Excluded words are actually considered to be regular expression patterns, so it is possible to use something like \"example[.!?]?\" to match the word \"example\" on it own and also if followed by \".\", \"!\" or \"?\". See <span class=\"name\">BuiltIn.Should Match Regexp</span> for more information about Python regular expression syntax in general and how to use it in Robot Framework data in particular.</p>\n<p>See also <a href=\"#Should%20Be%20Upper%20Case\" class=\"name\">Should Be Upper Case</a> and <a href=\"#Should%20Be%20Lower%20Case\" class=\"name\">Should Be Lower Case</a>.</p>",
+        "shortdoc": "Fails if given ``string`` is not title.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 753,
+        "doc_fr": "Échoue si la chaîne donnée n'est pas un titre.\n\nLa chaîne est une chaîne avec une casse de titre si chaque mot contient au moins une majuscule.\n\nPar exemple, « Ceci est le titre » et « OK, donne-moi mon iPhone » passeraient. « Tous les mots\nen minuscules » et « Mot en minuscules » échoueraient.\n\nCette logique a changé dans Robot Framework 4.0 pour être compatible avec Convertir en\ncas de titre. Voir Convertir en cas de titre pour l'algorithme et le raisonnement de la casse de titre.\n\nLe message d'erreur par défaut peut être remplacé par l'argument facultatif « msg ».\n\nLes mots peuvent être explicitement exclus avec l'argument facultatif « exclude ».\n\nLes mots explicitement exclus peuvent être donnés sous forme de liste ou de chaîne avec des mots\nséparés par une virgule et un espace facultatif. Les mots exclus sont en fait\nconsidérés comme des modèles d'expression régulière, il est donc possible d'utiliser\nquelque chose comme \"exemple[.!?] ?\" pour faire correspondre le mot \"exemple\" seul et aussi\ns'il est suivi de \".\", \"!\" ou \"?\". Voir BuiltIn.Should Match Regexp pour plus\nd'informations sur la syntaxe des expressions régulières Python en général et comment l'utiliser\ndans les données de Robot Framework en particulier.\n\nVoir également Should Be Upper Case et Should Be Lower Case."
+    },
+    {
+        "name": "Should Be Unicode String",
+        "args": [
+            {
+                "name": "item",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "item"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the given <code>item</code> is not a Unicode string.</p>\n<p>On Python 3 this keyword behaves exactly the same way <a href=\"#Should%20Be%20String\" class=\"name\">Should Be String</a>. That keyword should be used instead and this keyword will be deprecated.</p>",
+        "shortdoc": "Fails if the given ``item`` is not a Unicode string.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 706,
+        "doc_fr": "Échoue si l'élément donné n'est pas une chaîne Unicode.\n\nSur Python 3, ce mot-clé se comporte exactement de la même manière que Should Be String. Ce\nmot-clé doit être utilisé à la place et ce mot-clé sera obsolète."
+    },
+    {
+        "name": "Should Be Upper Case",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the given <code>string</code> is not in upper case.</p>\n<p>For example, <code>'STRING'</code> and <code>'WITH SPECIALS!'</code> would pass, and <code>'String'</code>, <code>''</code> and <code>' '</code> would fail.</p>\n<p>The default error message can be overridden with the optional <code>msg</code> argument.</p>\n<p>See also <a href=\"#Should%20Be%20Title%20Case\" class=\"name\">Should Be Title Case</a> and <a href=\"#Should%20Be%20Lower%20Case\" class=\"name\">Should Be Lower Case</a>.</p>",
+        "shortdoc": "Fails if the given ``string`` is not in upper case.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 738,
+        "doc_fr": "Échoue si la chaîne donnée n'est pas en majuscules.\n\nPar exemple, « STRING » et « WITH SPECIALS! » réussiraient, et « String »,\n« '' » et « '' échoueraient.\n\nLe message d'erreur par défaut peut être remplacé par l'argument facultatif « msg ».\n\nVoir également Doit être en majuscules et Doit être en minuscules."
+    },
+    {
+        "name": "Should Not Be String",
+        "args": [
+            {
+                "name": "item",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "item"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the given <code>item</code> is a string.</p>\n<p>The default error message can be overridden with the optional <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the given ``item`` is a string.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 698,
+        "doc_fr": "Échoue si l'élément « item » donné est une chaîne.\n\nLe message d'erreur par défaut peut être remplacé par l'argument facultatif « msg »."
+    },
+    {
+        "name": "Split String",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "separator",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "separator=None"
+            },
+            {
+                "name": "max_split",
+                "type": null,
+                "defaultValue": "-1",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "max_split=-1"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Splits the <code>string</code> using <code>separator</code> as a delimiter string.</p>\n<p>If a <code>separator</code> is not given, any whitespace string is a separator. In that case also possible consecutive whitespace as well as leading and trailing whitespace is ignored.</p>\n<p>Split words are returned as a list. If the optional <code>max_split</code> is given, at most <code>max_split</code> splits are done, and the returned list will have maximum <code>max_split + 1</code> elements.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>@{words} =</td>\n<td>Split String</td>\n<td>${string}</td>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>@{words} =</td>\n<td>Split String</td>\n<td>${string}</td>\n<td>,${SPACE}</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${pre}</td>\n<td>${post} =</td>\n<td>Split String</td>\n<td>${string}</td>\n<td>::</td>\n<td>1</td>\n</tr>\n</table>\n<p>See <a href=\"#Split%20String%20From%20Right\" class=\"name\">Split String From Right</a> if you want to start splitting from right, and <a href=\"#Fetch%20From%20Left\" class=\"name\">Fetch From Left</a> and <a href=\"#Fetch%20From%20Right\" class=\"name\">Fetch From Right</a> if you only want to get first/last part of the string.</p>",
+        "shortdoc": "Splits the ``string`` using ``separator`` as a delimiter string.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 529,
+        "doc_fr": "Divise la chaîne `string` en utilisant `separator` comme chaîne de délimitation.\n\nSi aucun `separator` n'est fourni, toute chaîne d'espaces blancs est un séparateur. Dans ce cas, les éventuels espaces blancs consécutifs ainsi que les espaces blancs de début et de fin sont également ignorés.\n\nLes mots séparés sont renvoyés sous forme de liste. Si l'option `max_split` est fournie, au plus `max_split` les divisions sont effectuées et la liste renvoyée aura un maximum d'éléments `max_split + 1`.\n\nExemples :\n\n@{words} = | Split String | ${string} | | | \n---|---|---|---|---|--- \n@{words} = | Split String | ${string} | ,${SPACE} | | \n${pre} | ${post} = | Split String | ${string} | :: | 1 \n\nVoir Diviser la chaîne à partir de la droite si vous souhaitez commencer à diviser à partir de la droite, et\nRécupérer à partir de la gauche et Récupérer à partir de la droite si vous souhaitez uniquement obtenir la première/dernière partie\nde la chaîne."
+    },
+    {
+        "name": "Split String From Right",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "separator",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "separator=None"
+            },
+            {
+                "name": "max_split",
+                "type": null,
+                "defaultValue": "-1",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "max_split=-1"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Splits the <code>string</code> using <code>separator</code> starting from right.</p>\n<p>Same as <a href=\"#Split%20String\" class=\"name\">Split String</a>, but splitting is started from right. This has an effect only when <code>max_split</code> is given.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${first}</td>\n<td>${rest} =</td>\n<td>Split String</td>\n<td>${string}</td>\n<td>-</td>\n<td>1</td>\n</tr>\n<tr>\n<td>${rest}</td>\n<td>${last} =</td>\n<td>Split String From Right</td>\n<td>${string}</td>\n<td>-</td>\n<td>1</td>\n</tr>\n</table>",
+        "shortdoc": "Splits the ``string`` using ``separator`` starting from right.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 555,
+        "doc_fr": "Divise la chaîne à l'aide de `separator` en commençant par la droite.\n\nComme Split String, mais la division commence par la droite. Cela n'a d'effet\nque lorsque `max_split` est donné.\n\nExemples :\n\n${first} | ${rest} = | Split String | ${string} | - | 1 \n---|---|---|---|---|--- \n${rest} | ${last} = | Split String From Right | ${string} | - | 1"
+    },
+    {
+        "name": "Split String To Characters",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Splits the given <code>string</code> to characters.</p>\n<p>Example:</p>\n<table border=\"1\">\n<tr>\n<td>@{characters} =</td>\n<td>Split String To Characters</td>\n<td>${string}</td>\n</tr>\n</table>",
+        "shortdoc": "Splits the given ``string`` to characters.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 570,
+        "doc_fr": "Divise la chaîne donnée en caractères.\n\nExemple :\n\n@{characters} = | Diviser la chaîne en caractères | ${string} \n---|---|---"
+    },
+    {
+        "name": "Split To Lines",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "start",
+                "type": null,
+                "defaultValue": "0",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "start=0"
+            },
+            {
+                "name": "end",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "end=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Splits the given string to lines.</p>\n<p>It is possible to get only a selection of lines from <code>start</code> to <code>end</code> so that <code>start</code> index is inclusive and <code>end</code> is exclusive. Line numbering starts from 0, and it is possible to use negative indices to refer to lines from the end.</p>\n<p>Lines are returned without the newlines. The number of returned lines is automatically logged.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>@{lines} =</td>\n<td>Split To Lines</td>\n<td>${manylines}</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>@{ignore first} =</td>\n<td>Split To Lines</td>\n<td>${manylines}</td>\n<td>1</td>\n<td></td>\n</tr>\n<tr>\n<td>@{ignore last} =</td>\n<td>Split To Lines</td>\n<td>${manylines}</td>\n<td></td>\n<td>-1</td>\n</tr>\n<tr>\n<td>@{5th to 10th} =</td>\n<td>Split To Lines</td>\n<td>${manylines}</td>\n<td>4</td>\n<td>10</td>\n</tr>\n<tr>\n<td>@{first two} =</td>\n<td>Split To Lines</td>\n<td>${manylines}</td>\n<td></td>\n<td>1</td>\n</tr>\n<tr>\n<td>@{last two} =</td>\n<td>Split To Lines</td>\n<td>${manylines}</td>\n<td>-2</td>\n<td></td>\n</tr>\n</table>\n<p>Use <a href=\"#Get%20Line\" class=\"name\">Get Line</a> if you only need to get a single line.</p>",
+        "shortdoc": "Splits the given string to lines.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 226,
+        "doc_fr": "Divise la chaîne donnée en lignes.\n\nIl est possible d'obtenir uniquement une sélection de lignes de `start` à `end` de sorte que\nl'index de `start` soit inclusif et `end` exclusif. La numérotation des lignes commence à 0 et il est possible d'utiliser des indices négatifs pour faire référence aux lignes à partir de la fin.\n\nLes lignes sont renvoyées sans les nouvelles lignes. Le nombre de lignes renvoyées est\nautomatiquement enregistré.\n\nExemples :\n\n@{lines} = | Split To Lines | ${manylines} | | \n---|---|---|---|--- \n@{ignore first} = | Split To Lines | ${manylines} | 1 | \n@{ignore last} = | Split To Lines | ${manylines} | | -1 \n@{5th to 10th} = | Split To Lines | ${manylines} | 4 | 10 \n@{first two} = | Split To Lines | ${manylines} | | 1 \n@{last two} = | Split To Lines | ${manylines} | -2 | \n\nUtilisez Get Line si vous n'avez besoin d'obtenir qu'une seule ligne."
+    },
+    {
+        "name": "Strip String",
+        "args": [
+            {
+                "name": "string",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "string"
+            },
+            {
+                "name": "mode",
+                "type": null,
+                "defaultValue": "both",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "mode=both"
+            },
+            {
+                "name": "characters",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "characters=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Remove leading and/or trailing whitespaces from the given string.</p>\n<p><code>mode</code> is either <code>left</code> to remove leading characters, <code>right</code> to remove trailing characters, <code>both</code> (default) to remove the characters from both sides of the string or <code>none</code> to return the unmodified string.</p>\n<p>If the optional <code>characters</code> is given, it must be a string and the characters in the string will be stripped in the string. Please note, that this is not a substring to be removed but a list of characters, see the example below.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${stripped}=</td>\n<td>Strip String</td>\n<td>${SPACE}Hello${SPACE}</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${stripped}</td>\n<td>Hello</td>\n<td></td>\n</tr>\n<tr>\n<td>${stripped}=</td>\n<td>Strip String</td>\n<td>${SPACE}Hello${SPACE}</td>\n<td>mode=left</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${stripped}</td>\n<td>Hello${SPACE}</td>\n<td></td>\n</tr>\n<tr>\n<td>${stripped}=</td>\n<td>Strip String</td>\n<td>aabaHelloeee</td>\n<td>characters=abe</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${stripped}</td>\n<td>Hello</td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Remove leading and/or trailing whitespaces from the given string.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/String.py",
+        "lineno": 660,
+        "doc_fr": "Supprimez les espaces de début et/ou de fin de la chaîne donnée.\n\n`mode` est soit `left` pour supprimer les caractères de début, `right` pour supprimer les caractères de fin, `both` (par défaut) pour supprimer les caractères des deux côtés\nde la chaîne ou `none` pour renvoyer la chaîne non modifiée.\n\nSi l'option `characters` est donnée, il doit s'agir d'une chaîne et les caractères\nde la chaîne seront supprimés de la chaîne. Veuillez noter qu'il ne s'agit pas d'une\nsous-chaîne à supprimer mais d'une liste de caractères, voir l'exemple ci-dessous.\n\nExemples :\n\n${stripped}= | Supprimer la chaîne | ${SPACE}Bonjour${SPACE} | \n---|---|---|--- \nDoit être égal | ${stripped} | Bonjour | \n${stripped}= | Supprimer la chaîne | ${SPACE}Bonjour${SPACE} | mode=left \nDoit être égal | ${stripped} | Bonjour ${SPACE} | \n${stripped}= | Supprimer la chaîne | aabaHelloeee | caractères=abe \nDoit être égal | ${stripped} | Bonjour |"
+    }
+]

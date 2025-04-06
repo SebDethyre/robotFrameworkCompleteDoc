@@ -1,0 +1,378 @@
+[
+    {
+        "name": "Add Time To Date",
+        "args": [
+            {
+                "name": "date",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "date"
+            },
+            {
+                "name": "time",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "time"
+            },
+            {
+                "name": "result_format",
+                "type": null,
+                "defaultValue": "timestamp",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "result_format=timestamp"
+            },
+            {
+                "name": "exclude_millis",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude_millis=False"
+            },
+            {
+                "name": "date_format",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "date_format=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Adds time to date and returns the resulting date.</p>\n<p>Arguments:</p>\n<ul>\n<li><code>date:</code>           Date to add time to in one of the supported <a href=\"#Date%20formats\" class=\"name\">date formats</a>.</li>\n<li><code>time:</code>           Time that is added in one of the supported <a href=\"#Time%20formats\" class=\"name\">time formats</a>.</li>\n<li><code>result_format:</code>  Format of the returned date.</li>\n<li><code>exclude_millis:</code> When set to any true value, rounds and drops milliseconds as explained in <a href=\"#Millisecond%20handling\" class=\"name\">millisecond handling</a>.</li>\n<li><code>date_format:</code>    Possible <a href=\"#Custom%20timestamp\" class=\"name\">custom timestamp</a> format of <code>date</code>.</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${date} =</td>\n<td>Add Time To Date</td>\n<td>2014-05-28 12:05:03.111</td>\n<td>7 days</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-06-04 12:05:03.111</td>\n<td></td>\n</tr>\n<tr>\n<td>${date} =</td>\n<td>Add Time To Date</td>\n<td>2014-05-28 12:05:03.111</td>\n<td>01:02:03:004</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-05-28 13:07:06.115</td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Adds time to date and returns the resulting date.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/DateTime.py",
+        "lineno": 431,
+        "doc_fr": "Ajoute l'heure à la date et renvoie la date résultante.\n\nArguments :\n\n* `date :` Date à laquelle ajouter l'heure dans l'un des formats de date pris en charge.\n* `time :` Heure ajoutée dans l'un des formats d'heure pris en charge.\n* `result_format :` Format de la date renvoyée.\n* `exclude_millis :` Lorsqu'il est défini sur une valeur true, arrondit et supprime les millisecondes comme expliqué dans la gestion des millisecondes.\n* `date_format :` Format d'horodatage personnalisé possible de `date`.\n\nExemples :\n\n${date} = | Ajouter l'heure à la date | 2014-05-28 12:05:03.111 | 7 jours \n---|---|---|--- \nDoit être égal | ${date} | 2014-06-04 12:05:03.111 | \n${date} = | Ajouter l'heure à la date | 2014-05-28 12:05:03.111 | 01:02:03:004 \nDoit être égal | ${date} | 2014-05-28 13:07:06.115 |"
+    },
+    {
+        "name": "Add Time To Time",
+        "args": [
+            {
+                "name": "time1",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "time1"
+            },
+            {
+                "name": "time2",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "time2"
+            },
+            {
+                "name": "result_format",
+                "type": null,
+                "defaultValue": "number",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "result_format=number"
+            },
+            {
+                "name": "exclude_millis",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude_millis=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Adds time to another time and returns the resulting time.</p>\n<p>Arguments:</p>\n<ul>\n<li><code>time1:</code>          First time in one of the supported <a href=\"#Time%20formats\" class=\"name\">time formats</a>.</li>\n<li><code>time2:</code>          Second time in one of the supported <a href=\"#Time%20formats\" class=\"name\">time formats</a>.</li>\n<li><code>result_format:</code>  Format of the returned time.</li>\n<li><code>exclude_millis:</code> When set to any true value, rounds and drops milliseconds as explained in <a href=\"#Millisecond%20handling\" class=\"name\">millisecond handling</a>.</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${time} =</td>\n<td>Add Time To Time</td>\n<td>1 minute</td>\n<td>42</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${time}</td>\n<td>${102}</td>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${time} =</td>\n<td>Add Time To Time</td>\n<td>3 hours 5 minutes</td>\n<td>01:02:03</td>\n<td>timer</td>\n<td>exclude_millis=yes</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${time}</td>\n<td>04:07:03</td>\n<td></td>\n<td></td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Adds time to another time and returns the resulting time.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/DateTime.py",
+        "lineno": 479,
+        "doc_fr": "Ajoute une heure à une autre heure et renvoie l'heure résultante.\n\nArguments :\n\n* `time1 :` Première heure dans l'un des formats d'heure pris en charge.\n* `time2 :` Deuxième heure dans l'un des formats d'heure pris en charge.\n* `result_format :` Format de l'heure renvoyée.\n* `exclude_millis :` Lorsqu'il est défini sur une valeur true, arrondit et supprime les millisecondes comme expliqué dans la gestion des millisecondes.\n\nExemples :\n\n${time} = | Ajouter une heure à une autre heure | 1 minute | 42 | | \n---|---|---|---|---|--- \nDoit être égal | ${time} | ${102} | | | \n${time} = | Ajouter une heure à une autre heure | 3 heures 5 minutes | 01:02:03 | timer | exclude_millis=yes \nDoit être égal | ${time} | 04:07:03 | | |"
+    },
+    {
+        "name": "Convert Date",
+        "args": [
+            {
+                "name": "date",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "date"
+            },
+            {
+                "name": "result_format",
+                "type": null,
+                "defaultValue": "timestamp",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "result_format=timestamp"
+            },
+            {
+                "name": "exclude_millis",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude_millis=False"
+            },
+            {
+                "name": "date_format",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "date_format=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Converts between supported <a href=\"#Date%20formats\" class=\"name\">date formats</a>.</p>\n<p>Arguments:</p>\n<ul>\n<li><code>date:</code>           Date in one of the supported <a href=\"#Date%20formats\" class=\"name\">date formats</a>.</li>\n<li><code>result_format:</code>  Format of the returned date.</li>\n<li><code>exclude_millis:</code> When set to any true value, rounds and drops milliseconds as explained in <a href=\"#Millisecond%20handling\" class=\"name\">millisecond handling</a>.</li>\n<li><code>date_format:</code>    Specifies possible <a href=\"#Custom%20timestamp\" class=\"name\">custom timestamp</a> format.</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${date} =</td>\n<td>Convert Date</td>\n<td>20140528 12:05:03.111</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-05-28 12:05:03.111</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${date} =</td>\n<td>Convert Date</td>\n<td>${date}</td>\n<td>epoch</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>${1401267903.111}</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${date} =</td>\n<td>Convert Date</td>\n<td>5.28.2014 12:05</td>\n<td>exclude_millis=yes</td>\n<td>date_format=%m.%d.%Y %H:%M</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-05-28 12:05:00</td>\n<td></td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Converts between supported `date formats`.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/DateTime.py",
+        "lineno": 363,
+        "doc_fr": "Convertit entre les formats de date pris en charge.\n\nArguments :\n\n* `date :` Date dans l'un des formats de date pris en charge.\n* `result_format :` Format de la date renvoyée.\n* `exclude_millis :` Lorsqu'il est défini sur une valeur true, arrondit et supprime les millisecondes comme expliqué dans la gestion des millisecondes.\n* `date_format :` Spécifie un format d'horodatage personnalisé possible.\n\nExemples :\n\n${date} = | Convertir la date | 20140528 12:05:03.111 | | \n---|---|---|---|--- \nDoit être égal | ${date} | 2014-05-28 12:05:03.111 | | \n${date} = | Convertir la date | ${date} | epoch | \nDoit être égal | ${date} | ${1401267903.111} | | \n${date} = | Convertir la date | 28/05/2014 12:05 | exclude_millis=oui | date_format=%m.%d.%Y %H:%M \nDoit être égal | ${date} | 28/05/2014 12:05:00 | |"
+    },
+    {
+        "name": "Convert Time",
+        "args": [
+            {
+                "name": "time",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "time"
+            },
+            {
+                "name": "result_format",
+                "type": null,
+                "defaultValue": "number",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "result_format=number"
+            },
+            {
+                "name": "exclude_millis",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude_millis=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Converts between supported <a href=\"#Time%20formats\" class=\"name\">time formats</a>.</p>\n<p>Arguments:</p>\n<ul>\n<li><code>time:</code>           Time in one of the supported <a href=\"#Time%20formats\" class=\"name\">time formats</a>.</li>\n<li><code>result_format:</code>  Format of the returned time.</li>\n<li><code>exclude_millis:</code> When set to any true value, rounds and drops milliseconds as explained in <a href=\"#Millisecond%20handling\" class=\"name\">millisecond handling</a>.</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${time} =</td>\n<td>Convert Time</td>\n<td>10 seconds</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${time}</td>\n<td>${10}</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${time} =</td>\n<td>Convert Time</td>\n<td>1:00:01</td>\n<td>verbose</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${time}</td>\n<td>1 hour 1 second</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${time} =</td>\n<td>Convert Time</td>\n<td>${3661.5}</td>\n<td>timer</td>\n<td>exclude_milles=yes</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${time}</td>\n<td>01:01:02</td>\n<td></td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Converts between supported `time formats`.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/DateTime.py",
+        "lineno": 385,
+        "doc_fr": "Convertit entre les formats d'heure pris en charge.\n\nArguments :\n\n* `time :` Heure dans l'un des formats d'heure pris en charge.\n* `result_format :` Format de l'heure renvoyée.\n* `exclude_millis :` Lorsqu'il est défini sur une valeur true, arrondit et supprime les millisecondes comme expliqué dans la gestion des millisecondes.\n\nExemples :\n\n${time} = | Convertir l'heure | 10 secondes | | \n---|---|---|---|--- \nDoit être égal | ${time} | ${10} | | \n${time} = | Convertir l'heure | 1:00:01 | verbose | \nDoit être égal | ${time} | 1 heure 1 seconde | | \n${time} = | Convertir l'heure | ${3661.5} | timer | exclude_milles=yes \nDoit être égal | ${time} | 01:01:02 | |"
+    },
+    {
+        "name": "Get Current Date",
+        "args": [
+            {
+                "name": "time_zone",
+                "type": null,
+                "defaultValue": "local",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "time_zone=local"
+            },
+            {
+                "name": "increment",
+                "type": null,
+                "defaultValue": "0",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "increment=0"
+            },
+            {
+                "name": "result_format",
+                "type": null,
+                "defaultValue": "timestamp",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "result_format=timestamp"
+            },
+            {
+                "name": "exclude_millis",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude_millis=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns current local or UTC time with an optional increment.</p>\n<p>Arguments:</p>\n<ul>\n<li><code>time_zone:</code>      Get the current time on this time zone. Currently only <code>local</code> (default) and <code>UTC</code> are supported. Has no effect if date is returned as an <a href=\"#Epoch%20time\" class=\"name\">epoch time</a>.</li>\n<li><code>increment:</code>      Optional time increment to add to the returned date in one of the supported <a href=\"#Time%20formats\" class=\"name\">time formats</a>. Can be negative.</li>\n<li><code>result_format:</code>  Format of the returned date (see <a href=\"#Date%20formats\" class=\"name\">date formats</a>).</li>\n<li><code>exclude_millis:</code> When set to any true value, rounds and drops milliseconds as explained in <a href=\"#Millisecond%20handling\" class=\"name\">millisecond handling</a>.</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${date} =</td>\n<td>Get Current Date</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-06-12 20:00:58.946</td>\n<td></td>\n</tr>\n<tr>\n<td>${date} =</td>\n<td>Get Current Date</td>\n<td>UTC</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-06-12 17:00:58.946</td>\n<td></td>\n</tr>\n<tr>\n<td>${date} =</td>\n<td>Get Current Date</td>\n<td>increment=02:30:00</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-06-12 22:30:58.946</td>\n<td></td>\n</tr>\n<tr>\n<td>${date} =</td>\n<td>Get Current Date</td>\n<td>UTC</td>\n<td>- 5 hours</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-06-12 12:00:58.946</td>\n<td></td>\n</tr>\n<tr>\n<td>${date} =</td>\n<td>Get Current Date</td>\n<td>result_format=datetime</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date.year}</td>\n<td>${2014}</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date.month}</td>\n<td>${6}</td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Returns current local or UTC time with an optional increment.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/DateTime.py",
+        "lineno": 321,
+        "doc_fr": "Renvoie l'heure locale ou UTC actuelle avec un incrément facultatif.\n\nArguments :\n\n* `time_zone :` Récupère l'heure actuelle sur ce fuseau horaire. Actuellement, seuls `local` (par défaut) et `UTC` sont pris en charge. N'a aucun effet si la date est renvoyée sous forme d'heure d'époque.\n* `increment :` Incrément facultatif à ajouter à la date renvoyée dans l'un des formats d'heure pris en charge. Peut être négatif.\n* `result_format :` Format de la date renvoyée (voir les formats de date).\n* `exclude_millis :` Lorsqu'il est défini sur une valeur true, arrondit et supprime les millisecondes comme expliqué dans la gestion des millisecondes.\n\nExemples :\n\n${date} = | Obtenir la date actuelle | | \n---|---|---|--- \nDoit être égal à | ${date} | 2014-06-12 20:00:58.946 | \n${date} = | Obtenir la date actuelle | UTC | \nDoit être égal | ${date} | 2014-06-12 17:00:58.946 | \n${date} = | Obtenir la date actuelle | increment=02:30:00 | \nDoit être égal | ${date} | 2014-06-12 22:30:58.946 | \n${date} = | Obtenir la date actuelle | UTC | \\- 5 heures \nDoit être égal | ${date} | 2014-06-12 12:00:58.946 | \n${date} = | Obtenir la date actuelle | result_format=datetime | \nDoit être égal | ${date.year} | ${2014} | \nDoit être égal | ${date.month} | ${6} |"
+    },
+    {
+        "name": "Subtract Date From Date",
+        "args": [
+            {
+                "name": "date1",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "date1"
+            },
+            {
+                "name": "date2",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "date2"
+            },
+            {
+                "name": "result_format",
+                "type": null,
+                "defaultValue": "number",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "result_format=number"
+            },
+            {
+                "name": "exclude_millis",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude_millis=False"
+            },
+            {
+                "name": "date1_format",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "date1_format=None"
+            },
+            {
+                "name": "date2_format",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "date2_format=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Subtracts date from another date and returns time between.</p>\n<p>Arguments:</p>\n<ul>\n<li><code>date1:</code>          Date to subtract another date from in one of the supported <a href=\"#Date%20formats\" class=\"name\">date formats</a>.</li>\n<li><code>date2:</code>          Date that is subtracted in one of the supported <a href=\"#Date%20formats\" class=\"name\">date formats</a>.</li>\n<li><code>result_format:</code>  Format of the returned time (see <a href=\"#Time%20formats\" class=\"name\">time formats</a>).</li>\n<li><code>exclude_millis:</code> When set to any true value, rounds and drops milliseconds as explained in <a href=\"#Millisecond%20handling\" class=\"name\">millisecond handling</a>.</li>\n<li><code>date1_format:</code>   Possible <a href=\"#Custom%20timestamp\" class=\"name\">custom timestamp</a> format of <code>date1</code>.</li>\n<li><code>date2_format:</code>   Possible <a href=\"#Custom%20timestamp\" class=\"name\">custom timestamp</a> format of <code>date2</code>.</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${time} =</td>\n<td>Subtract Date From Date</td>\n<td>2014-05-28 12:05:52</td>\n<td>2014-05-28 12:05:10</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${time}</td>\n<td>${42}</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${time} =</td>\n<td>Subtract Date From Date</td>\n<td>2014-05-28 12:05:52</td>\n<td>2014-05-27 12:05:10</td>\n<td>verbose</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${time}</td>\n<td>1 day 42 seconds</td>\n<td></td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Subtracts date from another date and returns time between.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/DateTime.py",
+        "lineno": 405,
+        "doc_fr": "Soustrait une date d'une autre date et renvoie l'heure entre les deux.\n\nArguments :\n\n* `date1 :` Date à soustraire d'une autre date dans l'un des formats de date pris en charge.\n* `date2 :` Date à soustraire dans l'un des formats de date pris en charge.\n* `result_format :` Format de l'heure renvoyée (voir formats d'heure).\n* `exclude_millis :` Lorsqu'il est défini sur une valeur true, arrondit et supprime les millisecondes comme expliqué dans la gestion des millisecondes.\n* `date1_format :` Format d'horodatage personnalisé possible de `date1`.\n* `date2_format :` Format d'horodatage personnalisé possible de `date2`.\n\nExemples :\n\n${time} = | Soustraire la date de la date | 2014-05-28 12:05:52 | 2014-05-28 12:05:10 | \n---|---|---|---|--- \nDoit être égal | ${time} | ${42} | | \n${time} = | Soustraire la date de la date | 2014-05-28 12:05:52 | 2014-05-27 12:05:10 | verbeux \nDoit être égal | ${time} | 1 jour 42 secondes | |"
+    },
+    {
+        "name": "Subtract Time From Date",
+        "args": [
+            {
+                "name": "date",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "date"
+            },
+            {
+                "name": "time",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "time"
+            },
+            {
+                "name": "result_format",
+                "type": null,
+                "defaultValue": "timestamp",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "result_format=timestamp"
+            },
+            {
+                "name": "exclude_millis",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude_millis=False"
+            },
+            {
+                "name": "date_format",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "date_format=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Subtracts time from date and returns the resulting date.</p>\n<p>Arguments:</p>\n<ul>\n<li><code>date:</code>           Date to subtract time from in one of the supported <a href=\"#Date%20formats\" class=\"name\">date formats</a>.</li>\n<li><code>time:</code>           Time that is subtracted in one of the supported <a href=\"#Time%20formats\" class=\"name\">time formats</a>.</li>\n<li><code>result_format:</code>  Format of the returned date.</li>\n<li><code>exclude_millis:</code> When set to any true value, rounds and drops milliseconds as explained in <a href=\"#Millisecond%20handling\" class=\"name\">millisecond handling</a>.</li>\n<li><code>date_format:</code>    Possible <a href=\"#Custom%20timestamp\" class=\"name\">custom timestamp</a> format of <code>date</code>.</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${date} =</td>\n<td>Subtract Time From Date</td>\n<td>2014-06-04 12:05:03.111</td>\n<td>7 days</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-05-28 12:05:03.111</td>\n<td></td>\n</tr>\n<tr>\n<td>${date} =</td>\n<td>Subtract Time From Date</td>\n<td>2014-05-28 13:07:06.115</td>\n<td>01:02:03:004</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${date}</td>\n<td>2014-05-28 12:05:03.111</td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Subtracts time from date and returns the resulting date.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/DateTime.py",
+        "lineno": 455,
+        "doc_fr": "Soustrait l'heure de la date et renvoie la date résultante.\n\nArguments :\n\n* `date :` Date à partir de laquelle soustraire l'heure dans l'un des formats de date pris en charge.\n* `time :` Heure soustraite dans l'un des formats d'heure pris en charge.\n* `result_format :` Format de la date renvoyée.\n* `exclude_millis :` Lorsqu'il est défini sur une valeur true, arrondit et supprime les millisecondes comme expliqué dans la gestion des millisecondes.\n* `date_format :` Format d'horodatage personnalisé possible de `date`.\n\nExemples :\n\n${date} = | Soustraire l'heure de la date | 2014-06-04 12:05:03.111 | 7 jours \n---|---|---|--- \nDoit être égal à | ${date} | 2014-05-28 12:05:03.111 | \n${date} = | Soustraire l'heure de la date | 2014-05-28 13:07:06.115 | 01:02:03:004 \nDoit être égal à | ${date} | 2014-05-28 12:05:03.111 |"
+    },
+    {
+        "name": "Subtract Time From Time",
+        "args": [
+            {
+                "name": "time1",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "time1"
+            },
+            {
+                "name": "time2",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "time2"
+            },
+            {
+                "name": "result_format",
+                "type": null,
+                "defaultValue": "number",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "result_format=number"
+            },
+            {
+                "name": "exclude_millis",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "exclude_millis=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Subtracts time from another time and returns the resulting time.</p>\n<p>Arguments:</p>\n<ul>\n<li><code>time1:</code>          Time to subtract another time from in one of the supported <a href=\"#Time%20formats\" class=\"name\">time formats</a>.</li>\n<li><code>time2:</code>          Time to subtract in one of the supported <a href=\"#Time%20formats\" class=\"name\">time formats</a>.</li>\n<li><code>result_format:</code>  Format of the returned time.</li>\n<li><code>exclude_millis:</code> When set to any true value, rounds and drops milliseconds as explained in <a href=\"#Millisecond%20handling\" class=\"name\">millisecond handling</a>.</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${time} =</td>\n<td>Subtract Time From Time</td>\n<td>00:02:30</td>\n<td>100</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${time}</td>\n<td>${50}</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${time} =</td>\n<td>Subtract Time From Time</td>\n<td>${time}</td>\n<td>1 minute</td>\n<td>compact</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${time}</td>\n<td>- 10s</td>\n<td></td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Subtracts time from another time and returns the resulting time.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/DateTime.py",
+        "lineno": 500,
+        "doc_fr": "Soustrait l'heure d'une autre heure et renvoie l'heure résultante.\n\nArguments :\n\n* `time1 : Heure à soustraire d'une autre heure dans l'un des formats d'heure pris en charge.\n* `time2 : Heure à soustraire dans l'un des formats d'heure pris en charge.\n* `result_format : Format de l'heure renvoyée.\n* `exclude_millis : Lorsqu'il est défini sur une valeur true, arrondit et supprime les millisecondes comme expliqué dans la gestion des millisecondes.\n\nExemples :\n\n${time} = | Soustraire l'heure de l'heure | 00:02:30 | 100 | \n---|---|---|---|--- \nDoit être égal | ${time} | ${50} | | \n${time} = | Soustraire l'heure de l'heure | ${time} | 1 minute | compact \nDoit être égal | ${time} | \\- 10s | |"
+    }
+]

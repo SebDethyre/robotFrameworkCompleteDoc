@@ -1,0 +1,1513 @@
+[
+    {
+        "name": "Append To Environment Variable",
+        "args": [
+            {
+                "name": "name",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "name"
+            },
+            {
+                "name": "values",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*values"
+            },
+            {
+                "name": "config",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_NAMED",
+                "required": false,
+                "repr": "**config"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Appends given <code>values</code> to environment variable <code>name</code>.</p>\n<p>If the environment variable already exists, values are added after it, and otherwise a new environment variable is created.</p>\n<p>Values are, by default, joined together using the operating system path separator (<code>;</code> on Windows, <code>:</code> elsewhere). This can be changed by giving a separator after the values like <code>separator=value</code>. No other configuration parameters are accepted.</p>\n<p>Examples (assuming <code>NAME</code> and <code>NAME2</code> do not exist initially):</p>\n<table border=\"1\">\n<tr>\n<td>Append To Environment Variable</td>\n<td>NAME</td>\n<td>first</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>%{NAME}</td>\n<td>first</td>\n<td></td>\n</tr>\n<tr>\n<td>Append To Environment Variable</td>\n<td>NAME</td>\n<td>second</td>\n<td>third</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>%{NAME}</td>\n<td>first${:}second${:}third</td>\n<td></td>\n</tr>\n<tr>\n<td>Append To Environment Variable</td>\n<td>NAME2</td>\n<td>first</td>\n<td>separator=-</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>%{NAME2}</td>\n<td>first</td>\n<td></td>\n</tr>\n<tr>\n<td>Append To Environment Variable</td>\n<td>NAME2</td>\n<td>second</td>\n<td>separator=-</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>%{NAME2}</td>\n<td>first-second</td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Appends given ``values`` to environment variable ``name``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 983,
+        "doc_fr": "Ajoute les `values` données à la variable d'environnement `name`.\n\nSi la variable d'environnement existe déjà, les valeurs sont ajoutées après elle, et\nsinon une nouvelle variable d'environnement est créée.\n\nLes valeurs sont, par défaut, jointes ensemble à l'aide du séparateur de chemin du système d'exploitation (`;` sous Windows, `:` ailleurs). Cela peut être modifié en donnant un\nséparateur après les valeurs comme `separator=value`. Aucun autre\nparamètre de configuration n'est accepté.\n\nExemples (en supposant que `NAME` et `NAME2` n'existent pas initialement) :\n\nAjouter à la variable d'environnement | NAME | first | \n---|---|---|--- \nDoit être égal | %{NAME} | first | \nAjouter à la variable d'environnement | NAME | second | third \nDoit être égal | %{NAME} | first${:}second${:}third | \nAjouter à la variable d'environnement | NAME2 | first | séparateur=- \nDoit être égal | %{NAME2} | premier | \nAjouter à la variable d'environnement | NAME2 | deuxième | séparateur=- \nDoit être égal | %{NAME2} | premier-deuxième |"
+    },
+    {
+        "name": "Append To File",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "content",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "content"
+            },
+            {
+                "name": "encoding",
+                "type": null,
+                "defaultValue": "UTF-8",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "encoding=UTF-8"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Appends the given content to the specified file.</p>\n<p>If the file exists, the given text is written to its end. If the file does not exist, it is created.</p>\n<p>Other than not overwriting possible existing files, this keyword works exactly like <a href=\"#Create%20File\" class=\"name\">Create File</a>. See its documentation for more details about the usage.</p>",
+        "shortdoc": "Appends the given content to the specified file.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 640,
+        "doc_fr": "Ajoute le contenu donné au fichier spécifié.\n\nSi le fichier existe, le texte donné est écrit à sa fin. Si le fichier n'existe pas, il est créé.\n\nEn plus de ne pas écraser les éventuels fichiers existants, ce mot-clé fonctionne exactement\ncomme Créer un fichier. Consultez sa documentation pour plus de détails sur son utilisation."
+    },
+    {
+        "name": "Copy Directory",
+        "args": [
+            {
+                "name": "source",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "source"
+            },
+            {
+                "name": "destination",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "destination"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Copies the source directory into the destination.</p>\n<p>If the destination exists, the source is copied under it. Otherwise the destination directory and the possible missing intermediate directories are created.</p>",
+        "shortdoc": "Copies the source directory into the destination.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 912,
+        "doc_fr": "Copie le répertoire source dans le répertoire de destination.\n\nSi le répertoire de destination existe, le répertoire source est copié sous celui-ci. Sinon, le répertoire de destination et les éventuels répertoires intermédiaires manquants sont créés."
+    },
+    {
+        "name": "Copy File",
+        "args": [
+            {
+                "name": "source",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "source"
+            },
+            {
+                "name": "destination",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "destination"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Copies the source file into the destination.</p>\n<p>Source must be a path to an existing file or a glob pattern (see <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a>) that matches exactly one file. How the destination is interpreted is explained below.</p>\n<p>1) If the destination is an existing file, the source file is copied over it.</p>\n<p>2) If the destination is an existing directory, the source file is copied into it. A possible file with the same name as the source is overwritten.</p>\n<p>3) If the destination does not exist and it ends with a path separator (<code>/</code> or <code>\\</code>), it is considered a directory. That directory is created and a source file copied into it. Possible missing intermediate directories are also created.</p>\n<p>4) If the destination does not exist and it does not end with a path separator, it is considered a file. If the path to the file does not exist, it is created.</p>\n<p>The resulting destination path is returned.</p>\n<p>See also <a href=\"#Copy%20Files\" class=\"name\">Copy Files</a>, <a href=\"#Move%20File\" class=\"name\">Move File</a>, and <a href=\"#Move%20Files\" class=\"name\">Move Files</a>.</p>",
+        "shortdoc": "Copies the source file into the destination.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 739,
+        "doc_fr": "Copie le fichier source dans la destination.\n\nLa source doit être un chemin vers un fichier existant ou un modèle glob (voir Modèles glob) qui correspond exactement à un fichier. La manière dont la destination est interprétée est expliquée ci-dessous.\n\n1) Si la destination est un fichier existant, le fichier source est copié dessus.\n\n2) Si la destination est un répertoire existant, le fichier source est copié dans celui-ci. Un fichier éventuel portant le même nom que la source est écrasé.\n\n3) Si la destination n'existe pas et qu'elle se termine par un séparateur de chemin (`/` ou `\\`), elle est considérée comme un répertoire. Ce répertoire est créé et un fichier source y est copié. Les répertoires intermédiaires manquants sont également créés.\n\n4) Si la destination n'existe pas et qu'elle ne se termine pas par un séparateur de chemin, elle est considérée comme un fichier. Si le chemin d'accès au fichier n'existe pas, il est créé.\n\nLe chemin de destination résultant est renvoyé.\n\nVoir également Copier des fichiers, Déplacer un fichier et Déplacer des fichiers."
+    },
+    {
+        "name": "Copy Files",
+        "args": [
+            {
+                "name": "sources_and_destination",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*sources_and_destination"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Copies specified files to the target directory.</p>\n<p>Source files can be given as exact paths and as glob patterns (see <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a>). At least one source must be given, but it is not an error if it is a pattern that does not match anything.</p>\n<p>Last argument must be the destination directory. If the destination does not exist, it will be created.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>Copy Files</td>\n<td>${dir}/file1.txt</td>\n<td>${dir}/file2.txt</td>\n<td>${dir2}</td>\n</tr>\n<tr>\n<td>Copy Files</td>\n<td>${dir}/file-*.txt</td>\n<td>${dir2}</td>\n<td></td>\n</tr>\n</table>\n<p>See also <a href=\"#Copy%20File\" class=\"name\">Copy File</a>, <a href=\"#Move%20File\" class=\"name\">Move File</a>, and <a href=\"#Move%20Files\" class=\"name\">Move Files</a>.</p>",
+        "shortdoc": "Copies specified files to the target directory.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 865,
+        "doc_fr": "Copie les fichiers spécifiés dans le répertoire cible.\n\nLes fichiers sources peuvent être indiqués sous forme de chemins exacts et de modèles globaux (voir Modèles globaux). Au moins une source doit être indiquée, mais ce n'est pas une erreur si c'est un modèle qui ne correspond à rien.\n\nLe dernier argument doit être le répertoire de destination. Si la destination n'existe pas, elle sera créée.\n\nExemples :\n\nCopier les fichiers | ${dir}/file1.txt | ${dir}/file2.txt | ${dir2} \n---|---|---|--- \nCopier les fichiers | ${dir}/file-*.txt | ${dir2} | \n\nVoir également Copier le fichier, Déplacer le fichier et Déplacer les fichiers."
+    },
+    {
+        "name": "Count Directories In Directory",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "pattern=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Wrapper for <a href=\"#Count%20Items%20In%20Directory\" class=\"name\">Count Items In Directory</a> returning only directory count.</p>",
+        "shortdoc": "Wrapper for `Count Items In Directory` returning only directory count.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1375,
+        "doc_fr": "Wrapper pour compter les éléments dans le répertoire renvoyant uniquement le nombre de répertoires."
+    },
+    {
+        "name": "Count Files In Directory",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "pattern=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Wrapper for <a href=\"#Count%20Items%20In%20Directory\" class=\"name\">Count Items In Directory</a> returning only file count.</p>",
+        "shortdoc": "Wrapper for `Count Items In Directory` returning only file count.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1369,
+        "doc_fr": "Wrapper pour compter les éléments dans le répertoire renvoyant uniquement le nombre de fichiers."
+    },
+    {
+        "name": "Count Items In Directory",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "pattern=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns and logs the number of all items in the given directory.</p>\n<p>The argument <code>pattern</code> has the same semantics as with <a href=\"#List%20Directory\" class=\"name\">List Directory</a> keyword. The count is returned as an integer, so it must be checked e.g. with the built-in keyword <span class=\"name\">Should Be Equal As Integers</span>.</p>",
+        "shortdoc": "Returns and logs the number of all items in the given directory.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1358,
+        "doc_fr": "Renvoie et enregistre le nombre total d'éléments dans le répertoire donné.\n\nL'argument `pattern` a la même sémantique qu'avec le mot-clé List Directory.\nLe nombre est renvoyé sous forme d'entier, il doit donc être vérifié par exemple avec le\nmot-clé intégré Should Be Equal As Integers."
+    },
+    {
+        "name": "Create Binary File",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "content",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "content"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Creates a binary file with the given content.</p>\n<p>If content is given as a Unicode string, it is first converted to bytes character by character. All characters with ordinal below 256 can be used and are converted to bytes with same values. Using characters with higher ordinal is an error.</p>\n<p>Byte strings, and possible other types, are written to the file as is.</p>\n<p>If the directory for the file does not exist, it is created, along with missing intermediate directories.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>Create Binary File</td>\n<td>${dir}/example.png</td>\n<td>${image content}</td>\n</tr>\n<tr>\n<td>Create Binary File</td>\n<td>${path}</td>\n<td>\\x01\\x00\\xe4\\x00</td>\n</tr>\n</table>\n<p>Use <a href=\"#Create%20File\" class=\"name\">Create File</a> if you want to create a text file using a certain encoding. <a href=\"#File%20Should%20Not%20Exist\" class=\"name\">File Should Not Exist</a> can be used to avoid overwriting existing files.</p>",
+        "shortdoc": "Creates a binary file with the given content.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 614,
+        "doc_fr": "Crée un fichier binaire avec le contenu donné.\n\nSi le contenu est donné sous forme de chaîne Unicode, il est d'abord converti en octets\ncaractère par caractère. Tous les caractères avec un ordinal inférieur à 256 peuvent être utilisés et\nsont convertis en octets avec les mêmes valeurs. L'utilisation de caractères avec un ordinal supérieur\nest une erreur.\n\nLes chaînes d'octets et d'autres types possibles sont écrits dans le fichier tels quels.\n\nSi le répertoire du fichier n'existe pas, il est créé, ainsi que les\nrépertoires intermédiaires manquants.\n\nExemples :\n\nCréer un fichier binaire | ${dir}/example.png | ${image content} \n---|---|--- \nCréer un fichier binaire | ${path} | \\x01\\x00\\xe4\\x00 \n\nUtilisez Créer un fichier si vous souhaitez créer un fichier texte en utilisant un certain codage.\nLe fichier ne doit pas exister peut être utilisé pour éviter d'écraser les fichiers existants."
+    },
+    {
+        "name": "Create Directory",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Creates the specified directory.</p>\n<p>Also possible intermediate directories are created. Passes if the directory already exists, but fails if the path exists and is not a directory.</p>",
+        "shortdoc": "Creates the specified directory.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 697,
+        "doc_fr": "Crée le répertoire spécifié.\n\nDes répertoires intermédiaires sont également créés. Réussit si le répertoire\nexiste déjà, mais échoue si le chemin existe et n'est pas un répertoire."
+    },
+    {
+        "name": "Create File",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "content",
+                "type": null,
+                "defaultValue": "",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "content="
+            },
+            {
+                "name": "encoding",
+                "type": null,
+                "defaultValue": "UTF-8",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "encoding=UTF-8"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Creates a file with the given content and encoding.</p>\n<p>If the directory where the file is created does not exist, it is automatically created along with possible missing intermediate directories. Possible existing file is overwritten.</p>\n<p>On Windows newline characters (<code>\\n</code>) in content are automatically converted to Windows native newline sequence (<code>\\r\\n</code>).</p>\n<p>See <a href=\"#Get%20File\" class=\"name\">Get File</a> for more information about possible <code>encoding</code> values, including special values <code>SYSTEM</code> and <code>CONSOLE</code>.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>Create File</td>\n<td>${dir}/example.txt</td>\n<td>Hello, world!</td>\n<td></td>\n</tr>\n<tr>\n<td>Create File</td>\n<td>${path}</td>\n<td>Hyv\\xe4 esimerkki</td>\n<td>Latin-1</td>\n</tr>\n<tr>\n<td>Create File</td>\n<td>/tmp/foo.txt</td>\n<td>3\\nlines\\nhere\\n</td>\n<td>SYSTEM</td>\n</tr>\n</table>\n<p>Use <a href=\"#Append%20To%20File\" class=\"name\">Append To File</a> if you want to append to an existing file and <a href=\"#Create%20Binary%20File\" class=\"name\">Create Binary File</a> if you need to write bytes without encoding. <a href=\"#File%20Should%20Not%20Exist\" class=\"name\">File Should Not Exist</a> can be used to avoid overwriting existing files.</p>",
+        "shortdoc": "Creates a file with the given content and encoding.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 577,
+        "doc_fr": "Crée un fichier avec le contenu et l'encodage donnés.\n\nSi le répertoire dans lequel le fichier est créé n'existe pas, il est automatiquement\ncréé avec les éventuels répertoires intermédiaires manquants. Un éventuel\nfichier existant est écrasé.\n\nSous Windows, les caractères de nouvelle ligne (`\\n`) dans le contenu sont automatiquement convertis en\nséquence de nouvelle ligne native Windows (`\\r\\n`).\n\nVoir Obtenir le fichier pour plus d'informations sur les valeurs possibles de `encoding`, y compris\nles valeurs spéciales `SYSTEM` et `CONSOLE`.\n\nExemples :\n\nCréer un fichier | ${dir}/example.txt | Bonjour tout le monde ! | \n---|---|---|--- \nCréer un fichier | ${path} | Hyv\\xe4 esimerkki | Latin-1 \nCréer un fichier | /tmp/foo.txt | 3\\nlines\\nhere\\n | SYSTÈME\n\nUtilisez Ajouter au fichier si vous souhaitez ajouter un élément à un fichier existant et Créer un fichier binaire\nsi vous devez écrire des octets sans codage. Le fichier ne doit pas exister peut être\nutilisé pour éviter d'écraser les fichiers existants."
+    },
+    {
+        "name": "Directory Should Be Empty",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails unless the specified directory is empty.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails unless the specified directory is empty.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 524,
+        "doc_fr": "Échoue sauf si le répertoire spécifié est vide.\n\nLe message d'erreur par défaut peut être remplacé par l'argument « msg »."
+    },
+    {
+        "name": "Directory Should Exist",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails unless the given path points to an existing directory.</p>\n<p>The path can be given as an exact path or as a glob pattern. See the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section for details about the supported syntax.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails unless the given path points to an existing directory.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 440,
+        "doc_fr": "Échoue à moins que le chemin indiqué pointe vers un répertoire existant.\n\nLe chemin peut être donné sous forme de chemin exact ou de modèle global. Consultez la section Modèles globaux\npour plus de détails sur la syntaxe prise en charge.\n\nLe message d'erreur par défaut peut être remplacé par l'argument « msg »."
+    },
+    {
+        "name": "Directory Should Not Be Empty",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the specified directory is empty.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the specified directory is empty.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 536,
+        "doc_fr": "Échoue si le répertoire spécifié est vide.\n\nLe message d'erreur par défaut peut être remplacé par l'argument « msg »."
+    },
+    {
+        "name": "Directory Should Not Exist",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the given path points to an existing file.</p>\n<p>The path can be given as an exact path or as a glob pattern. See the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section for details about the supported syntax.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the given path points to an existing file.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 454,
+        "doc_fr": "Échoue si le chemin donné pointe vers un fichier existant.\n\nLe chemin peut être donné sous forme de chemin exact ou de modèle global. Consultez la section Modèles globaux\npour plus de détails sur la syntaxe prise en charge.\n\nLe message d'erreur par défaut peut être remplacé par l'argument `msg`."
+    },
+    {
+        "name": "Empty Directory",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Deletes all the content from the given directory.</p>\n<p>Deletes both files and sub-directories, but the specified directory itself if not removed. Use <a href=\"#Remove%20Directory\" class=\"name\">Remove Directory</a> if you want to remove the whole directory.</p>",
+        "shortdoc": "Deletes all the content from the given directory.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 682,
+        "doc_fr": "Supprime tout le contenu du répertoire donné.\n\nSupprime les fichiers et les sous-répertoires, mais le répertoire spécifié lui-même\nn'est pas supprimé. Utilisez Supprimer le répertoire si vous souhaitez supprimer l'intégralité du répertoire."
+    },
+    {
+        "name": "Environment Variable Should Be Set",
+        "args": [
+            {
+                "name": "name",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "name"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the specified environment variable is not set.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the specified environment variable is not set.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1030,
+        "doc_fr": "Échoue si la variable d'environnement spécifiée n'est pas définie.\n\nLe message d'erreur par défaut peut être remplacé par l'argument « msg »."
+    },
+    {
+        "name": "Environment Variable Should Not Be Set",
+        "args": [
+            {
+                "name": "name",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "name"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the specified environment variable is set.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the specified environment variable is set.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1040,
+        "doc_fr": "Échoue si la variable d'environnement spécifiée est définie.\n\nLe message d'erreur par défaut peut être remplacé par l'argument « msg »."
+    },
+    {
+        "name": "File Should Be Empty",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails unless the specified file is empty.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails unless the specified file is empty.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 548,
+        "doc_fr": "Échoue sauf si le fichier spécifié est vide.\n\nLe message d'erreur par défaut peut être remplacé par l'argument « msg »."
+    },
+    {
+        "name": "File Should Exist",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails unless the given <code>path</code> points to an existing file.</p>\n<p>The path can be given as an exact path or as a glob pattern. See the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section for details about the supported syntax.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails unless the given ``path`` points to an existing file.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 412,
+        "doc_fr": "Échoue à moins que le chemin indiqué ne pointe vers un fichier existant.\n\nLe chemin peut être donné sous forme de chemin exact ou de modèle global. Consultez la section Modèles globaux\npour plus de détails sur la syntaxe prise en charge.\n\nLe message d'erreur par défaut peut être remplacé par l'argument « msg »."
+    },
+    {
+        "name": "File Should Not Be Empty",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the specified file is empty.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the specified file is empty.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 562,
+        "doc_fr": "Échoue si le fichier spécifié est vide.\n\nLe message d'erreur par défaut peut être remplacé par l'argument « msg »."
+    },
+    {
+        "name": "File Should Not Exist",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the given path points to an existing file.</p>\n<p>The path can be given as an exact path or as a glob pattern. See the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section for details about the supported syntax.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the given path points to an existing file.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 426,
+        "doc_fr": "Échoue si le chemin donné pointe vers un fichier existant.\n\nLe chemin peut être donné sous forme de chemin exact ou de modèle global. Consultez la section Modèles globaux\npour plus de détails sur la syntaxe prise en charge.\n\nLe message d'erreur par défaut peut être remplacé par l'argument `msg`."
+    },
+    {
+        "name": "Get Binary File",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns the contents of a specified file.</p>\n<p>This keyword reads the specified file and returns the contents as is. See also <a href=\"#Get%20File\" class=\"name\">Get File</a>.</p>",
+        "shortdoc": "Returns the contents of a specified file.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 294,
+        "doc_fr": "Renvoie le contenu d'un fichier spécifié.\n\nCe mot clé lit le fichier spécifié et renvoie le contenu tel quel. Voir aussi\nObtenir le fichier."
+    },
+    {
+        "name": "Get Environment Variable",
+        "args": [
+            {
+                "name": "name",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "name"
+            },
+            {
+                "name": "default",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "default=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns the value of an environment variable with the given name.</p>\n<p>If no environment variable is found, returns possible default value. If no default value is given, the keyword fails.</p>\n<p>Returned variables are automatically decoded to Unicode using the system encoding.</p>\n<p>Note that you can also access environment variables directly using the variable syntax <code>%{ENV_VAR_NAME}</code>.</p>",
+        "shortdoc": "Returns the value of an environment variable with the given name.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 956,
+        "doc_fr": "Renvoie la valeur d'une variable d'environnement avec le nom donné.\n\nSi aucune variable d'environnement n'est trouvée, renvoie une valeur par défaut possible. Si aucune\nvaleur par défaut n'est donnée, le mot-clé échoue.\n\nLes variables renvoyées sont automatiquement décodées en Unicode à l'aide de l'encodage\nsystème.\n\nNotez que vous pouvez également accéder directement aux variables d'environnement à l'aide de la\nsyntaxe de variable `%{ENV_VAR_NAME}`."
+    },
+    {
+        "name": "Get Environment Variables",
+        "args": [],
+        "returnType": null,
+        "doc": "<p>Returns currently available environment variables as a dictionary.</p>\n<p>Both keys and values are decoded to Unicode using the system encoding. Altering the returned dictionary has no effect on the actual environment variables.</p>",
+        "shortdoc": "Returns currently available environment variables as a dictionary.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1051,
+        "doc_fr": "Renvoie les variables d'environnement actuellement disponibles sous forme de dictionnaire.\n\nLes clés et les valeurs sont décodées en Unicode à l'aide du codage système.\nLa modification du dictionnaire renvoyé n'a aucun effet sur les variables d'environnement\nréelles."
+    },
+    {
+        "name": "Get File",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "encoding",
+                "type": null,
+                "defaultValue": "UTF-8",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "encoding=UTF-8"
+            },
+            {
+                "name": "encoding_errors",
+                "type": null,
+                "defaultValue": "strict",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "encoding_errors=strict"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns the contents of a specified file.</p>\n<p>This keyword reads the specified file and returns the contents. Line breaks in content are converted to platform independent form. See also <a href=\"#Get%20Binary%20File\" class=\"name\">Get Binary File</a>.</p>\n<p><code>encoding</code> defines the encoding of the file. The default value is <code>UTF-8</code>, which means that UTF-8 and ASCII encoded files are read correctly. In addition to the encodings supported by the underlying Python implementation, the following special encoding values can be used:</p>\n<ul>\n<li><code>SYSTEM</code>: Use the default system encoding.</li>\n<li><code>CONSOLE</code>: Use the console encoding. Outside Windows this is same as the system encoding.</li>\n</ul>\n<p><code>encoding_errors</code> argument controls what to do if decoding some bytes fails. All values accepted by <code>decode</code> method in Python are valid, but in practice the following values are most useful:</p>\n<ul>\n<li><code>strict</code>: Fail if characters cannot be decoded (default).</li>\n<li><code>ignore</code>: Ignore characters that cannot be decoded.</li>\n<li><code>replace</code>: Replace characters that cannot be decoded with a replacement character.</li>\n</ul>",
+        "shortdoc": "Returns the contents of a specified file.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 253,
+        "doc_fr": "Renvoie le contenu d'un fichier spécifié.\n\nCe mot-clé lit le fichier spécifié et renvoie le contenu. Les sauts de ligne\ndans le contenu sont convertis en format indépendant de la plateforme. Voir aussi Obtenir un fichier binaire.\n\n`encoding` définit l'encodage du fichier. La valeur par défaut est `UTF-8`,\nce qui signifie que les fichiers encodés en UTF-8 et ASCII sont lus correctement. En plus des encodages pris en charge par l'implémentation Python sous-jacente, les\nvaleurs d'encodage spéciales suivantes peuvent être utilisées :\n\n* `SYSTEM` : utiliser l'encodage système par défaut.\n* `CONSOLE` : utiliser l'encodage de la console. En dehors de Windows, il est identique à l'encodage système.\n\nL'argument `encoding_errors` contrôle ce qu'il faut faire si le décodage de certains octets échoue.\nToutes les valeurs acceptées par la méthode `decode` dans Python sont valides, mais en pratique, les\nvaleurs suivantes sont les plus utiles :\n\n* `strict` : échoue si les caractères ne peuvent pas être décodés (par défaut).\n* `ignore` : ignorer les caractères qui ne peuvent pas être décodés.\n* `replace` : remplacer les caractères qui ne peuvent pas être décodés par un caractère de remplacement."
+    },
+    {
+        "name": "Get File Size",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns and logs file size as an integer in bytes.</p>",
+        "shortdoc": "Returns and logs file size as an integer in bytes.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1305,
+        "doc_fr": "Renvoie et enregistre la taille du fichier sous forme d'entier en octets."
+    },
+    {
+        "name": "Get Modified Time",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "format",
+                "type": null,
+                "defaultValue": "timestamp",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "format=timestamp"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns the last modification time of a file or directory.</p>\n<p>How time is returned is determined based on the given <code>format</code> string as follows. Note that all checks are case-insensitive. Returned time is also automatically logged.</p>\n<p>1) If <code>format</code> contains the word <code>epoch</code>, the time is returned in seconds after the UNIX epoch. The return value is always an integer.</p>\n<p>2) If <code>format</code> contains any of the words <code>year</code>, <code>month</code>, <code>day</code>, <code>hour</code>, <code>min</code> or <code>sec</code>, only the selected parts are returned. The order of the returned parts is always the one in the previous sentence and the order of the words in <code>format</code> is not significant. The parts are returned as zero-padded strings (e.g. May -&gt; <code>05</code>).</p>\n<p>3) Otherwise, and by default, the time is returned as a timestamp string in the format <code>2006-02-24 15:08:31</code>.</p>\n<p>Examples (when the modified time of <code>${CURDIR}</code> is 2006-03-29 15:06:21):</p>\n<table border=\"1\">\n<tr>\n<td>${time} =</td>\n<td>Get Modified Time</td>\n<td>${CURDIR}</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${secs} =</td>\n<td>Get Modified Time</td>\n<td>${CURDIR}</td>\n<td>epoch</td>\n<td></td>\n</tr>\n<tr>\n<td>${year} =</td>\n<td>Get Modified Time</td>\n<td>${CURDIR}</td>\n<td>return year</td>\n<td></td>\n</tr>\n<tr>\n<td>${y}</td>\n<td>${d} =</td>\n<td>Get Modified Time</td>\n<td>${CURDIR}</td>\n<td>year,day</td>\n</tr>\n<tr>\n<td>@{time} =</td>\n<td>Get Modified Time</td>\n<td>${CURDIR}</td>\n<td>year,month,day,hour,min,sec</td>\n<td></td>\n</tr>\n</table>\n<p>=&gt;</p>\n<ul>\n<li>${time} = '2006-03-29 15:06:21'</li>\n<li>${secs} = 1143637581</li>\n<li>${year} = '2006'</li>\n<li>${y} = '2006' &amp; ${d} = '29'</li>\n<li>@{time} = ['2006', '03', '29', '15', '06', '21']</li>\n</ul>",
+        "shortdoc": "Returns the last modification time of a file or directory.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1216,
+        "doc_fr": "Renvoie l'heure de la dernière modification d'un fichier ou d'un répertoire.\n\nLa manière dont l'heure est renvoyée est déterminée en fonction de la chaîne `format` donnée\ncomme suit. Notez que toutes les vérifications ne sont pas sensibles à la casse. L'heure renvoyée est également\nautomatiquement enregistrée.\n\n1) Si `format` contient le mot `epoch`, l'heure est renvoyée en secondes\naprès l'époque UNIX. La valeur renvoyée est toujours un entier.\n\n2) Si `format` contient l'un des mots `year`, `month`, `day`, `hour`, `min`\nou `sec`, seules les parties sélectionnées sont renvoyées. L'ordre des\nparties renvoyées est toujours celui de la phrase précédente et l'ordre des mots dans\n`format` n'est pas significatif. Les parties sont renvoyées sous forme de chaînes complétées par des zéros\n(par exemple, mai -> `05`).\n\n3) Sinon, et par défaut, l'heure est renvoyée sous forme de chaîne d'horodatage au\nformat `2006-02-24 15:08:31`.\n\nExemples (lorsque l'heure de modification de `${CURDIR}` est 2006-03-29 15:06:21) :\n\n${time} = | Obtenir l'heure de modification | ${CURDIR} | | \n---|---|---|---|--- \n${secs} = | Obtenir l'heure de modification | ${CURDIR} | epoch | \n${year} = | Obtenir l'heure de modification | ${CURDIR} | return year | \n${y} | ${d} = | Obtenir l'heure de modification | ${CURDIR} | year,day \n@{time} = | Obtenir l'heure de modification | ${CURDIR} | year,month,day,hour,min,sec | \n\n=>\n\n* ${time} = '2006-03-29 15:06:21'\n* ${secs} = 1143637581\n* ${year} = '2006'\n* ${y} = '2006' & ${d} = '29'\n* @{time} = ['2006', '03', '29', '15', '06', '21']"
+    },
+    {
+        "name": "Grep File",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "pattern"
+            },
+            {
+                "name": "encoding",
+                "type": null,
+                "defaultValue": "UTF-8",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "encoding=UTF-8"
+            },
+            {
+                "name": "encoding_errors",
+                "type": null,
+                "defaultValue": "strict",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "encoding_errors=strict"
+            },
+            {
+                "name": "regexp",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "regexp=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns the lines of the specified file that match the <code>pattern</code>.</p>\n<p>This keyword reads a file from the file system using the defined <code>path</code>, <code>encoding</code> and <code>encoding_errors</code> similarly as <a href=\"#Get%20File\" class=\"name\">Get File</a>. A difference is that only the lines that match the given <code>pattern</code> are returned. Lines are returned as a single string concatenated back together with newlines and the number of matched lines is automatically logged. Possible trailing newline is never returned.</p>\n<p>A line matches if it contains the <code>pattern</code> anywhere in it i.e. it does not need to match the pattern fully. There are two supported pattern types:</p>\n<ul>\n<li>By default the pattern is considered a <i>glob</i> pattern where, for example, <code>*</code> and <code>?</code> can be used as wildcards.</li>\n<li>If the <code>regexp</code> argument is given a true value, the pattern is considered to be a <i>regular expression</i>. These patterns are more powerful but also more complicated than glob patterns. They often use the backslash character and it needs to be escaped in Robot Framework date like <span class=\"name\">\\\\</span>.</li>\n</ul>\n<p>For more information about glob and regular expression syntax, see the <a href=\"#Pattern%20matching\" class=\"name\">Pattern matching</a> section. With this keyword matching is always case-sensitive.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${errors} =</td>\n<td>Grep File</td>\n<td>/var/log/myapp.log</td>\n<td>ERROR</td>\n<td></td>\n</tr>\n<tr>\n<td>${ret} =</td>\n<td>Grep File</td>\n<td>${CURDIR}/file.txt</td>\n<td>[Ww]ildc??d ex*ple</td>\n<td></td>\n</tr>\n<tr>\n<td>${ret} =</td>\n<td>Grep File</td>\n<td>${CURDIR}/file.txt</td>\n<td>[Ww]ildc\\\\w+d ex.*ple</td>\n<td>regexp=True</td>\n</tr>\n</table>\n<p>Special encoding values <code>SYSTEM</code> and <code>CONSOLE</code> that <a href=\"#Get%20File\" class=\"name\">Get File</a> supports are supported by this keyword only with Robot Framework 4.0 and newer.</p>\n<p>Support for regular expressions is new in Robot Framework 5.0.</p>",
+        "shortdoc": "Returns the lines of the specified file that match the ``pattern``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 305,
+        "doc_fr": "Renvoie les lignes du fichier spécifié qui correspondent au « pattern ».\n\nCe mot-clé lit un fichier à partir du système de fichiers en utilisant le « path »,\n« encoding » et « encoding_errors » définis de la même manière que Get File. Une différence est que\nseules les lignes qui correspondent au « pattern » donné sont renvoyées. Les lignes sont\nreportées sous forme d'une chaîne unique concaténée avec des sauts de ligne et le nombre de\nlignes correspondantes est automatiquement enregistré. Un saut de ligne final éventuel n'est\njamais renvoyé.\n\nUne ligne correspond si elle contient le « pattern » n'importe où, c'est-à-dire qu'elle n'a\npas besoin de correspondre entièrement au modèle. Il existe deux types de modèles pris en charge :\n\n* Par défaut, le modèle est considéré comme un modèle _glob_ où, par exemple, `*` et `?` peuvent être utilisés comme caractères génériques.\n* Si l'argument `regexp` reçoit une valeur true, le modèle est considéré comme une _expression régulière_. Ces modèles sont plus puissants mais aussi plus compliqués que les modèles glob. Ils utilisent souvent le caractère barre oblique inverse et il doit être échappé dans la date de Robot Framework comme \\\\\\.\n\nPour plus d'informations sur la syntaxe glob et des expressions régulières, consultez la section Correspondance de motifs. Avec ce mot-clé, la correspondance est toujours sensible à la casse.\n\nExemples :\n\n${errors} = | Grep File | /var/log/myapp.log | ERROR | \n---|---|---|---|--- \n${ret} = | Grep File | ${CURDIR}/file.txt | [Ww]ildc??d ex*ple | \n${ret} = | Grep File | ${CURDIR}/file.txt | [Ww]ildc\\\\\\w+d ex.*ple | regexp=True \n\nLes valeurs d'encodage spéciales `SYSTEM` et `CONSOLE` que Get File prend en charge sont\nprises en charge par ce mot-clé uniquement avec Robot Framework 4.0 et versions ultérieures.\n\nLa prise en charge des expressions régulières est une nouveauté dans Robot Framework 5.0."
+    },
+    {
+        "name": "Join Path",
+        "args": [
+            {
+                "name": "base",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "base"
+            },
+            {
+                "name": "parts",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*parts"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Joins the given path part(s) to the given base path.</p>\n<p>The path separator (<code>/</code> or <code>\\</code>) is inserted when needed and the possible absolute paths handled as expected. The resulted path is also normalized.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${path} =</td>\n<td>Join Path</td>\n<td>my</td>\n<td>path</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${p2} =</td>\n<td>Join Path</td>\n<td>my/</td>\n<td>path/</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${p3} =</td>\n<td>Join Path</td>\n<td>my</td>\n<td>path</td>\n<td>my</td>\n<td>file.txt</td>\n</tr>\n<tr>\n<td>${p4} =</td>\n<td>Join Path</td>\n<td>my</td>\n<td>/path</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>${p5} =</td>\n<td>Join Path</td>\n<td>/my/path/</td>\n<td>..</td>\n<td>path2</td>\n<td></td>\n</tr>\n</table>\n<p>=&gt;</p>\n<ul>\n<li>${path} = 'my/path'</li>\n<li>${p2} = 'my/path'</li>\n<li>${p3} = 'my/path/my/file.txt'</li>\n<li>${p4} = '/path'</li>\n<li>${p5} = '/my/path2'</li>\n</ul>",
+        "shortdoc": "Joins the given path part(s) to the given base path.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1073,
+        "doc_fr": "Joint les parties de chemin données au chemin de base donné.\n\nLe séparateur de chemin (`/` ou `\\`) est inséré si nécessaire et les chemins absolus possibles sont traités comme prévu. Le chemin résultant est également normalisé.\n\nExemples :\n\n${path} = | Join Path | my | path | | \n---|---|---|---|---|--- \n${p2} = | Join Path | my/ | path/ | | \n${p3} = | Join Path | my | path | my | file.txt \n${p4} = | Join Path | my | /path | | \n${p5} = | Join Path | /my/path/ | .. | path2 | \n\n=>\n\n* ${path} = 'mon/chemin'\n* ${p2} = 'mon/chemin'\n* ${p3} = 'mon/chemin/mon/fichier.txt'\n* ${p4} = '/chemin'\n* ${p5} = '/mon/chemin2'"
+    },
+    {
+        "name": "Join Paths",
+        "args": [
+            {
+                "name": "base",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "base"
+            },
+            {
+                "name": "paths",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*paths"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Joins given paths with base and returns resulted paths.</p>\n<p>See <a href=\"#Join%20Path\" class=\"name\">Join Path</a> for more information.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>@{p1} =</td>\n<td>Join Paths</td>\n<td>base</td>\n<td>example</td>\n<td>other</td>\n<td></td>\n</tr>\n<tr>\n<td>@{p2} =</td>\n<td>Join Paths</td>\n<td>/my/base</td>\n<td>/example</td>\n<td>other</td>\n<td></td>\n</tr>\n<tr>\n<td>@{p3} =</td>\n<td>Join Paths</td>\n<td>my/base</td>\n<td>example/path/</td>\n<td>other</td>\n<td>one/more</td>\n</tr>\n</table>\n<p>=&gt;</p>\n<ul>\n<li>@{p1} = ['base/example', 'base/other']</li>\n<li>@{p2} = ['/example', '/my/base/other']</li>\n<li>@{p3} = ['my/base/example/path', 'my/base/other', 'my/base/one/more']</li>\n</ul>",
+        "shortdoc": "Joins given paths with base and returns resulted paths.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1097,
+        "doc_fr": "Joint les chemins donnés avec la base et renvoie les chemins résultants.\n\nVoir Join Path pour plus d'informations.\n\nExemples :\n\n@{p1} = | Join Paths | base | example | other | \n---|---|---|---|---|--- \n@{p2} = | Join Paths | /my/base | /example | other | \n@{p3} = | Join Paths | my/base | example/path/ | other | one/more \n\n=>\n\n* @{p1} = ['base/example', 'base/other']\n* @{p2} = ['/example', '/my/base/other']\n* @{p3} = ['my/base/example/path', 'my/base/other', 'my/base/one/more']"
+    },
+    {
+        "name": "List Directories In Directory",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "pattern=None"
+            },
+            {
+                "name": "absolute",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "absolute=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Wrapper for <a href=\"#List%20Directory\" class=\"name\">List Directory</a> that returns only directories.</p>",
+        "shortdoc": "Wrapper for `List Directory` that returns only directories.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1350,
+        "doc_fr": "Wrapper pour List Directory qui renvoie uniquement des répertoires."
+    },
+    {
+        "name": "List Directory",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "pattern=None"
+            },
+            {
+                "name": "absolute",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "absolute=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Returns and logs items in a directory, optionally filtered with <code>pattern</code>.</p>\n<p>File and directory names are returned in case-sensitive alphabetical order, e.g. <code>['A Name', 'Second', 'a lower case name', 'one more']</code>. Implicit directories <code>.</code> and <code>..</code> are not returned. The returned items are automatically logged.</p>\n<p>File and directory names are returned relative to the given path (e.g. <code>'file.txt'</code>) by default. If you want them be returned in absolute format (e.g. <code>'/home/robot/file.txt'</code>), give the <code>absolute</code> argument a true value (see <a href=\"#Boolean%20arguments\" class=\"name\">Boolean arguments</a>).</p>\n<p>If <code>pattern</code> is given, only items matching it are returned. The pattern is considered to be a <i>glob pattern</i> and the full syntax is explained in the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section. With this keyword matching is always case-sensitive.</p>\n<p>Examples (using also other <a href=\"#List%20Directory\" class=\"name\">List Directory</a> variants):</p>\n<table border=\"1\">\n<tr>\n<td>@{items} =</td>\n<td>List Directory</td>\n<td>${TEMPDIR}</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>@{files} =</td>\n<td>List Files In Directory</td>\n<td>/tmp</td>\n<td>*.txt</td>\n<td>absolute</td>\n</tr>\n<tr>\n<td>${count} =</td>\n<td>Count Files In Directory</td>\n<td>${CURDIR}</td>\n<td>???</td>\n<td></td>\n</tr>\n</table>",
+        "shortdoc": "Returns and logs items in a directory, optionally filtered with ``pattern``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1315,
+        "doc_fr": "Renvoie et enregistre les éléments d'un répertoire, éventuellement filtrés avec `pattern`.\n\nLes noms de fichiers et de répertoires sont renvoyés dans l'ordre alphabétique sensible à la casse,\npar exemple `['A Name', 'Second', 'a tiny name', 'one more']`. Les\nrépertoires implicites `.` et `..` ne sont pas renvoyés. Les éléments\nrenvoyés sont automatiquement enregistrés.\n\nLes noms de fichiers et de répertoires sont renvoyés par défaut par rapport au chemin donné (par exemple\n`'file.txt'`). Si vous souhaitez qu'ils soient renvoyés au format absolu\n(par exemple `'/home/robot/file.txt'`), donnez à l'argument `absolute` une valeur true\n(voir Arguments booléens).\n\nSi `pattern` est donné, seuls les éléments correspondants sont renvoyés. Le modèle est\nconsidéré comme un _modèle global_ et la syntaxe complète est expliquée dans la section Modèles globaux. Avec ce mot-clé, la correspondance est toujours sensible à la casse.\n\nExemples (en utilisant également d'autres variantes de répertoire de listes) :\n\n@{items} = | Répertoire de listes | ${TEMPDIR} | | \n---|---|---|---|--- \n@{files} = | Liste des fichiers dans le répertoire | /tmp | *.txt | absolu \n${count} = | Compter les fichiers dans le répertoire | ${CURDIR} | ??? |"
+    },
+    {
+        "name": "List Files In Directory",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "pattern",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "pattern=None"
+            },
+            {
+                "name": "absolute",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "absolute=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Wrapper for <a href=\"#List%20Directory\" class=\"name\">List Directory</a> that returns only files.</p>",
+        "shortdoc": "Wrapper for `List Directory` that returns only files.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1343,
+        "doc_fr": "Wrapper pour List Directory qui renvoie uniquement des fichiers."
+    },
+    {
+        "name": "Log Environment Variables",
+        "args": [
+            {
+                "name": "level",
+                "type": null,
+                "defaultValue": "INFO",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "level=INFO"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Logs all environment variables using the given log level.</p>\n<p>Environment variables are also returned the same way as with <a href=\"#Get%20Environment%20Variables\" class=\"name\">Get Environment Variables</a> keyword.</p>",
+        "shortdoc": "Logs all environment variables using the given log level.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1060,
+        "doc_fr": "Enregistre toutes les variables d'environnement en utilisant le niveau de journalisation donné.\n\nLes variables d'environnement sont également renvoyées de la même manière qu'avec le mot-clé Get Environment\nVariables."
+    },
+    {
+        "name": "Log File",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "encoding",
+                "type": null,
+                "defaultValue": "UTF-8",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "encoding=UTF-8"
+            },
+            {
+                "name": "encoding_errors",
+                "type": null,
+                "defaultValue": "strict",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "encoding_errors=strict"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Wrapper for <a href=\"#Get%20File\" class=\"name\">Get File</a> that also logs the returned file.</p>\n<p>The file is logged with the INFO level. If you want something else, just use <a href=\"#Get%20File\" class=\"name\">Get File</a> and the built-in keyword <span class=\"name\">Log</span> with the desired level.</p>\n<p>See <a href=\"#Get%20File\" class=\"name\">Get File</a> for more information about <code>encoding</code> and <code>encoding_errors</code> arguments.</p>",
+        "shortdoc": "Wrapper for `Get File` that also logs the returned file.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 358,
+        "doc_fr": "Wrapper pour Get File qui enregistre également le fichier renvoyé.\n\nLe fichier est enregistré avec le niveau INFO. Si vous voulez autre chose, utilisez simplement\nGet File et le mot-clé intégré Log avec le niveau souhaité.\n\nVoir Get File pour plus d'informations sur les arguments `encoding` et `encoding_errors`\n."
+    },
+    {
+        "name": "Move Directory",
+        "args": [
+            {
+                "name": "source",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "source"
+            },
+            {
+                "name": "destination",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "destination"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Moves the source directory into a destination.</p>\n<p>Uses <a href=\"#Copy%20Directory\" class=\"name\">Copy Directory</a> keyword internally, and <code>source</code> and <code>destination</code> arguments have exactly same semantics as with that keyword.</p>",
+        "shortdoc": "Moves the source directory into a destination.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 941,
+        "doc_fr": "Déplace le répertoire source vers une destination.\n\nUtilise le mot-clé Copy Directory en interne, et les arguments `source` et `destination`\nont exactement la même sémantique qu'avec ce mot-clé."
+    },
+    {
+        "name": "Move File",
+        "args": [
+            {
+                "name": "source",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "source"
+            },
+            {
+                "name": "destination",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "destination"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Moves the source file into the destination.</p>\n<p>Arguments have exactly same semantics as with <a href=\"#Copy%20File\" class=\"name\">Copy File</a> keyword. Destination file path is returned.</p>\n<p>If the source and destination are on the same filesystem, rename operation is used. Otherwise file is copied to the destination filesystem and then removed from the original filesystem.</p>\n<p>See also <a href=\"#Move%20Files\" class=\"name\">Move Files</a>, <a href=\"#Copy%20File\" class=\"name\">Copy File</a>, and <a href=\"#Copy%20Files\" class=\"name\">Copy Files</a>.</p>",
+        "shortdoc": "Moves the source file into the destination.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 846,
+        "doc_fr": "Déplace le fichier source vers la destination.\n\nLes arguments ont exactement la même sémantique que pour le mot-clé Copy File. Le chemin du fichier de destination\nest renvoyé.\n\nSi la source et la destination se trouvent sur le même système de fichiers, l'opération de renommage\nest utilisée. Sinon, le fichier est copié vers le système de fichiers de destination, puis supprimé\ndu système de fichiers d'origine.\n\nVoir également Déplacer des fichiers, Copier un fichier et Copier des fichiers."
+    },
+    {
+        "name": "Move Files",
+        "args": [
+            {
+                "name": "sources_and_destination",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*sources_and_destination"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Moves specified files to the target directory.</p>\n<p>Arguments have exactly same semantics as with <a href=\"#Copy%20Files\" class=\"name\">Copy Files</a> keyword.</p>\n<p>See also <a href=\"#Move%20File\" class=\"name\">Move File</a>, <a href=\"#Copy%20File\" class=\"name\">Copy File</a>, and <a href=\"#Copy%20Files\" class=\"name\">Copy Files</a>.</p>",
+        "shortdoc": "Moves specified files to the target directory.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 900,
+        "doc_fr": "Déplace les fichiers spécifiés vers le répertoire cible.\n\nLes arguments ont exactement la même sémantique que le mot-clé Copy Files.\n\nVoir également Move File, Copy File et Copy Files."
+    },
+    {
+        "name": "Normalize Path",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "case_normalize",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "case_normalize=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Normalizes the given path.</p>\n<ul>\n<li>Collapses redundant separators and up-level references.</li>\n<li>Converts <code>/</code> to <code>\\</code> on Windows.</li>\n<li>Replaces initial <code>~</code> or <code>~user</code> by that user's home directory.</li>\n<li>If <code>case_normalize</code> is given a true value (see <a href=\"#Boolean%20arguments\" class=\"name\">Boolean arguments</a>) on Windows, converts the path to all lowercase.</li>\n<li>Converts <code>pathlib.Path</code> instances to <code>str</code>.</li>\n</ul>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${path1} =</td>\n<td>Normalize Path</td>\n<td>abc/</td>\n</tr>\n<tr>\n<td>${path2} =</td>\n<td>Normalize Path</td>\n<td>abc/../def</td>\n</tr>\n<tr>\n<td>${path3} =</td>\n<td>Normalize Path</td>\n<td>abc/./def//ghi</td>\n</tr>\n<tr>\n<td>${path4} =</td>\n<td>Normalize Path</td>\n<td>~robot/stuff</td>\n</tr>\n</table>\n<p>=&gt;</p>\n<ul>\n<li>${path1} = 'abc'</li>\n<li>${path2} = 'def'</li>\n<li>${path3} = 'abc/def/ghi'</li>\n<li>${path4} = '/home/robot/stuff'</li>\n</ul>\n<p>On Windows result would use <code>\\</code> instead of <code>/</code> and home directory would be different.</p>",
+        "shortdoc": "Normalizes the given path.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1113,
+        "doc_fr": "Normalise le chemin donné.\n\n* Réduit les séparateurs redondants et les références de niveau supérieur.\n* Convertit `/` en `\\` sous Windows.\n* Remplace le `~` ou `~user` initial par le répertoire personnel de cet utilisateur.\n* Si `case_normalize` reçoit une valeur true (voir les arguments booléens) sous Windows, convertit le chemin en minuscules.\n* Convertit les instances `pathlib.Path` en `str`.\n\nExemples :\n\n${path1} = | Normaliser le chemin | abc/ \n---|---|--- \n${path2} = | Normaliser le chemin | abc/../def \n${path3} = | Normaliser le chemin | abc/./def//ghi \n${path4} = | Normaliser le chemin | ~robot/stuff \n\n=>\n\n* ${path1} = 'abc'\n* ${path2} = 'def'\n* ${path3} = 'abc/def/ghi'\n* ${path4} = '/home/robot/stuff'\n\nSous Windows, le résultat utiliserait `\\` au lieu de `/` et le répertoire personnel serait\ndifférent.\n\n"
+    },
+    {
+        "name": "Remove Directory",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "recursive",
+                "type": null,
+                "defaultValue": "False",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "recursive=False"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Removes the directory pointed to by the given <code>path</code>.</p>\n<p>If the second argument <code>recursive</code> is given a true value (see <a href=\"#Boolean%20arguments\" class=\"name\">Boolean arguments</a>), the directory is removed recursively. Otherwise removing fails if the directory is not empty.</p>\n<p>If the directory pointed to by the <code>path</code> does not exist, the keyword passes, but it fails, if the <code>path</code> points to a file.</p>",
+        "shortdoc": "Removes the directory pointed to by the given ``path``.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 713,
+        "doc_fr": "Supprime le répertoire pointé par le `path` donné.\n\nSi le deuxième argument `recursive` reçoit une valeur true (voir les arguments booléens), le répertoire est supprimé de manière récursive. Sinon, la suppression échoue si\nle répertoire n'est pas vide.\n\nSi le répertoire pointé par le `path` n'existe pas, le mot-clé passe,\nmais échoue si le `path` pointe vers un fichier."
+    },
+    {
+        "name": "Remove Environment Variable",
+        "args": [
+            {
+                "name": "names",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*names"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Deletes the specified environment variable.</p>\n<p>Does nothing if the environment variable is not set.</p>\n<p>It is possible to remove multiple variables by passing them to this keyword as separate arguments.</p>",
+        "shortdoc": "Deletes the specified environment variable.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1015,
+        "doc_fr": "Supprime la variable d'environnement spécifiée.\n\nNe fait rien si la variable d'environnement n'est pas définie.\n\nIl est possible de supprimer plusieurs variables en les passant à ce mot-clé\nen tant qu'arguments distincts."
+    },
+    {
+        "name": "Remove File",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Removes a file with the given path.</p>\n<p>Passes if the file does not exist, but fails if the path does not point to a regular file (e.g. it points to a directory).</p>\n<p>The path can be given as an exact path or as a glob pattern. See the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section for details about the supported syntax. If the path is a pattern, all files matching it are removed.</p>",
+        "shortdoc": "Removes a file with the given path.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 653,
+        "doc_fr": "Supprime un fichier avec le chemin donné.\n\nRéussit si le fichier n'existe pas, mais échoue si le chemin ne pointe pas vers un\nfichier normal (par exemple, il pointe vers un répertoire).\n\nLe chemin peut être donné sous la forme d'un chemin exact ou d'un modèle glob. Consultez la section Modèles globaux\npour plus de détails sur la syntaxe prise en charge. Si le chemin est un\nmodèle, tous les fichiers correspondant à celui-ci sont supprimés."
+    },
+    {
+        "name": "Remove Files",
+        "args": [
+            {
+                "name": "paths",
+                "type": null,
+                "defaultValue": null,
+                "kind": "VAR_POSITIONAL",
+                "required": false,
+                "repr": "*paths"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Uses <a href=\"#Remove%20File\" class=\"name\">Remove File</a> to remove multiple files one-by-one.</p>\n<p>Example:</p>\n<table border=\"1\">\n<tr>\n<td>Remove Files</td>\n<td>${TEMPDIR}${/}foo.txt</td>\n<td>${TEMPDIR}${/}bar.txt</td>\n<td>${TEMPDIR}${/}zap.txt</td>\n</tr>\n</table>",
+        "shortdoc": "Uses `Remove File` to remove multiple files one-by-one.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 673,
+        "doc_fr": "Utilise Remove File pour supprimer plusieurs fichiers un par un.\n\nExemple :\n\nSupprimer les fichiers | ${TEMPDIR}${/}foo.txt | ${TEMPDIR}${/}bar.txt | ${TEMPDIR}${/}zap.txt \n---|---|---|---"
+    },
+    {
+        "name": "Run",
+        "args": [
+            {
+                "name": "command",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "command"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Runs the given command in the system and returns the output.</p>\n<p>The execution status of the command <b>is not checked</b> by this keyword, and it must be done separately based on the returned output. If the execution return code is needed, either <a href=\"#Run%20And%20Return%20Rc\" class=\"name\">Run And Return RC</a> or <a href=\"#Run%20And%20Return%20Rc%20And%20Output\" class=\"name\">Run And Return RC And Output</a> can be used.</p>\n<p>The standard error stream is automatically redirected to the standard output stream by adding <code>2&gt;&amp;1</code> after the executed command. This automatic redirection is done only when the executed command does not contain additional output redirections. You can thus freely forward the standard error somewhere else, for example, like <code>my_command 2&gt;stderr.txt</code>.</p>\n<p>The returned output contains everything written into the standard output or error streams by the command (unless either of them is redirected explicitly). Many commands add an extra newline (<code>\\n</code>) after the output to make it easier to read in the console. To ease processing the returned output, this possible trailing newline is stripped by this keyword.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${output} =</td>\n<td>Run</td>\n<td>ls -lhF /tmp</td>\n</tr>\n<tr>\n<td>Log</td>\n<td>${output}</td>\n<td></td>\n</tr>\n<tr>\n<td>${result} =</td>\n<td>Run</td>\n<td>${CURDIR}${/}tester.py arg1 arg2</td>\n</tr>\n<tr>\n<td>Should Not Contain</td>\n<td>${result}</td>\n<td>FAIL</td>\n</tr>\n<tr>\n<td>${stdout} =</td>\n<td>Run</td>\n<td>/opt/script.sh 2&gt;/tmp/stderr.txt</td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${stdout}</td>\n<td>TEST PASSED</td>\n</tr>\n<tr>\n<td>File Should Be Empty</td>\n<td>/tmp/stderr.txt</td>\n<td></td>\n</tr>\n</table>\n<p><b>TIP:</b> <span class=\"name\">Run Process</span> keyword provided by the <a href=\"http://robotframework.org/robotframework/latest/libraries/Process.html\">Process library</a> supports better process configuration and is generally recommended as a replacement for this keyword.</p>",
+        "shortdoc": "Runs the given command in the system and returns the output.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 159,
+        "doc_fr": "Exécute la commande donnée dans le système et renvoie la sortie.\n\nL'état d'exécution de la commande **n'est pas vérifié** par ce mot-clé, et il\ndoit être effectué séparément en fonction de la sortie renvoyée. Si le code de retour d'exécution est nécessaire, vous pouvez utiliser Run And Return RC ou Run And Return RC And Output.\n\nLe flux d'erreur standard est automatiquement redirigé vers le flux de sortie\nstandard en ajoutant `2>&1` après la commande exécutée. Cette redirection\nautomatique n'est effectuée que lorsque la commande exécutée ne contient pas de redirections de sortie\nsupplémentaires. Vous pouvez ainsi librement transférer l'erreur standard ailleurs,\npar exemple, comme `my_command 2>stderr.txt`.\n\nLa sortie renvoyée contient tout ce qui est écrit dans la sortie standard ou les flux\nd'erreur par la commande (à moins que l'un d'eux ne soit redirigé explicitement).\nDe nombreuses commandes ajoutent une nouvelle ligne supplémentaire (`\\n`) après la sortie pour la rendre\nplus facile à lire dans la console. Pour faciliter le traitement de la sortie renvoyée, cette éventuelle nouvelle ligne de fin est supprimée par ce mot-clé.\n\nExemples :\n\n${output} = | Run | ls -lhF /tmp \n---|---|--- \nLog | ${output} | \n${result} = | Run | ${CURDIR}${/}tester.py arg1 arg2 \nNe doit pas contenir | ${result} | FAIL \n${stdout} = | Run | /opt/script.sh 2>/tmp/stderr.txt \nDoit être égal | ${stdout} | TEST RÉUSSI \nLe fichier doit être vide | /tmp/stderr.txt | \n\n**CONSEIL :** le mot-clé Run Process fourni par la [bibliothèque\nde processus](http://robotframework.org/robotframework/latest/libraries/Process.html)\nprend en charge une meilleure configuration de processus et est généralement recommandé\ncomme remplacement pour ce mot-clé."
+    },
+    {
+        "name": "Run And Return Rc",
+        "args": [
+            {
+                "name": "command",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "command"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Runs the given command in the system and returns the return code.</p>\n<p>The return code (RC) is returned as a positive integer in range from 0 to 255 as returned by the executed command. On some operating systems (notable Windows) original return codes can be something else, but this keyword always maps them to the 0-255 range. Since the RC is an integer, it must be checked e.g. with the keyword <span class=\"name\">Should Be Equal As Integers</span> instead of <span class=\"name\">Should Be Equal</span> (both are built-in keywords).</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${rc} =</td>\n<td>Run and Return RC</td>\n<td>${CURDIR}${/}script.py arg</td>\n</tr>\n<tr>\n<td>Should Be Equal As Integers</td>\n<td>${rc}</td>\n<td>0</td>\n</tr>\n<tr>\n<td>${rc} =</td>\n<td>Run and Return RC</td>\n<td>/path/to/example.rb arg1 arg2</td>\n</tr>\n<tr>\n<td>Should Be True</td>\n<td>0 &lt; ${rc} &lt; 42</td>\n<td></td>\n</tr>\n</table>\n<p>See <a href=\"#Run\" class=\"name\">Run</a> and <a href=\"#Run%20And%20Return%20Rc%20And%20Output\" class=\"name\">Run And Return RC And Output</a> if you need to get the output of the executed command.</p>\n<p><b>TIP:</b> <span class=\"name\">Run Process</span> keyword provided by the <a href=\"http://robotframework.org/robotframework/latest/libraries/Process.html\">Process library</a> supports better process configuration and is generally recommended as a replacement for this keyword.</p>",
+        "shortdoc": "Runs the given command in the system and returns the return code.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 197,
+        "doc_fr": "Exécute la commande donnée dans le système et renvoie le code de retour.\n\nLe code de retour (RC) est renvoyé sous la forme d'un entier positif compris entre 0 et 255\ncomme renvoyé par la commande exécutée. Sur certains systèmes d'exploitation (notamment Windows), les codes de retour d'origine peuvent être autres, mais ce mot-clé\nles mappe toujours sur la plage 0-255. Étant donné que le RC est un entier, il doit être vérifié\npar exemple avec le mot-clé Should Be Equal As Integers au lieu de Should Be Equal\n(les deux sont des mots-clés intégrés).\n\nExemples :\n\n${rc} = | Run and Return RC | ${CURDIR}${/}script.py arg \n---|---|--- \nShould Be Equal As Integers | ${rc} | 0 \n${rc} = | Run and Return RC | /path/to/example.rb arg1 arg2 \nShould Be True | 0 < ${rc} < 42 | \n\nConsultez Exécuter et Exécuter et renvoyer le RC et la sortie si vous devez obtenir la sortie de la\ncommande exécutée.\n\n**CONSEIL :** le mot-clé Run Process fourni par la [bibliothèque\nProcess](http://robotframework.org/robotframework/latest/libraries/Process.html)\nprend en charge une meilleure configuration de processus et est généralement recommandé comme\nremplacement de ce mot-clé."
+    },
+    {
+        "name": "Run And Return Rc And Output",
+        "args": [
+            {
+                "name": "command",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "command"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Runs the given command in the system and returns the RC and output.</p>\n<p>The return code (RC) is returned similarly as with <a href=\"#Run%20And%20Return%20Rc\" class=\"name\">Run And Return RC</a> and the output similarly as with <a href=\"#Run\" class=\"name\">Run</a>.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${rc}</td>\n<td>${output} =</td>\n<td>Run and Return RC and Output</td>\n<td>${CURDIR}${/}mytool</td>\n</tr>\n<tr>\n<td>Should Be Equal As Integers</td>\n<td>${rc}</td>\n<td>0</td>\n<td></td>\n</tr>\n<tr>\n<td>Should Not Contain</td>\n<td>${output}</td>\n<td>FAIL</td>\n<td></td>\n</tr>\n<tr>\n<td>${rc}</td>\n<td>${stdout} =</td>\n<td>Run and Return RC and Output</td>\n<td>/opt/script.sh 2&gt;/tmp/stderr.txt</td>\n</tr>\n<tr>\n<td>Should Be True</td>\n<td>${rc} &gt; 42</td>\n<td></td>\n<td></td>\n</tr>\n<tr>\n<td>Should Be Equal</td>\n<td>${stdout}</td>\n<td>TEST PASSED</td>\n<td></td>\n</tr>\n<tr>\n<td>File Should Be Empty</td>\n<td>/tmp/stderr.txt</td>\n<td></td>\n<td></td>\n</tr>\n</table>\n<p><b>TIP:</b> <span class=\"name\">Run Process</span> keyword provided by the <a href=\"http://robotframework.org/robotframework/latest/libraries/Process.html\">Process library</a> supports better process configuration and is generally recommended as a replacement for this keyword.</p>",
+        "shortdoc": "Runs the given command in the system and returns the RC and output.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 224,
+        "doc_fr": "Exécute la commande donnée dans le système et renvoie le RC et la sortie.\n\nLe code de retour (RC) est renvoyé de la même manière qu'avec Run And Return RC et la\nsortie de la même manière qu'avec Run.\n\nExemples :\n\n${rc} | ${output} = | Run et Return RC et Output | ${CURDIR}${/}mytool \n---|---|---|--- \nDoit être égal à des entiers | ${rc} | 0 | \nNe doit pas contenir | ${output} | FAIL | \n${rc} | ${stdout} = | Run et Return RC et Output | /opt/script.sh 2>/tmp/stderr.txt \nDoit être vrai | ${rc} > 42 | | \nDoit être égal | ${stdout} | TEST PASSED | \nLe fichier doit être vide | /tmp/stderr.txt | | \n\n**CONSEIL :** le mot-clé Run Process fourni par la [bibliothèque\nde processus](http://robotframework.org/robotframework/latest/libraries/Process.html)\nprend en charge une meilleure configuration de processus et est généralement\nrecommandé en remplacement de ce mot-clé."
+    },
+    {
+        "name": "Set Environment Variable",
+        "args": [
+            {
+                "name": "name",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "name"
+            },
+            {
+                "name": "value",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "value"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Sets an environment variable to a specified value.</p>\n<p>Values are converted to strings automatically. Set variables are automatically encoded using the system encoding.</p>",
+        "shortdoc": "Sets an environment variable to a specified value.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 973,
+        "doc_fr": "Définit une variable d'environnement sur une valeur spécifiée.\n\nLes valeurs sont automatiquement converties en chaînes. Les variables définies sont automatiquement\nencodées à l'aide de l'encodage système."
+    },
+    {
+        "name": "Set Modified Time",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "mtime",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "mtime"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Sets the file modification and access times.</p>\n<p>Changes the modification and access times of the given file to the value determined by <code>mtime</code>. The time can be given in different formats described below. Note that all checks involving strings are case-insensitive. Modified time can only be set to regular files.</p>\n<p>1) If <code>mtime</code> is a number, or a string that can be converted to a number, it is interpreted as seconds since the UNIX epoch (1970-01-01 00:00:00 UTC). This documentation was originally written about 1177654467 seconds after the epoch.</p>\n<p>2) If <code>mtime</code> is a timestamp, that time will be used. Valid timestamp formats are <code>YYYY-MM-DD hh:mm:ss</code> and <code>YYYYMMDD hhmmss</code>.</p>\n<p>3) If <code>mtime</code> is equal to <code>NOW</code>, the current local time is used.</p>\n<p>4) If <code>mtime</code> is equal to <code>UTC</code>, the current time in <a href=\"http://en.wikipedia.org/wiki/Coordinated_Universal_Time\">UTC</a> is used.</p>\n<p>5) If <code>mtime</code> is in the format like <code>NOW - 1 day</code> or <code>UTC + 1 hour 30 min</code>, the current local/UTC time plus/minus the time specified with the time string is used. The time string format is described in an appendix of Robot Framework User Guide.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>Set Modified Time</td>\n<td>/path/file</td>\n<td>1177654467</td>\n<td># Time given as epoch seconds</td>\n</tr>\n<tr>\n<td>Set Modified Time</td>\n<td>/path/file</td>\n<td>2007-04-27 9:14:27</td>\n<td># Time given as a timestamp</td>\n</tr>\n<tr>\n<td>Set Modified Time</td>\n<td>/path/file</td>\n<td>NOW</td>\n<td># The local time of execution</td>\n</tr>\n<tr>\n<td>Set Modified Time</td>\n<td>/path/file</td>\n<td>NOW - 1 day</td>\n<td># 1 day subtracted from the local time</td>\n</tr>\n<tr>\n<td>Set Modified Time</td>\n<td>/path/file</td>\n<td>UTC + 1h 2min 3s</td>\n<td># 1h 2min 3s added to the UTC time</td>\n</tr>\n</table>",
+        "shortdoc": "Sets the file modification and access times.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1258,
+        "doc_fr": "Définit les heures de modification et d'accès au fichier.\n\nModifie les heures de modification et d'accès du fichier donné à la valeur\ndéterminée par `mtime`. L'heure peut être donnée dans différents formats décrits\nci-dessous. Notez que toutes les vérifications impliquant des chaînes sont insensibles à la casse. L'heure de modification\nne peut être définie que sur des fichiers normaux.\n\n1) Si `mtime` est un nombre ou une chaîne pouvant être convertie en nombre, elle\nest interprétée comme des secondes depuis l'époque UNIX (1970-01-01 00:00:00 UTC). Cette\ndocumentation a été écrite à l'origine environ 1177654467 secondes après l'époque.\n\n2) Si `mtime` est un horodatage, cette heure sera utilisée. Les formats d'horodatage\nvalides sont `YYYY-MM-DD hh:mm:ss` et `YYYYMMDD hhmmss`.\n\n3) Si `mtime` est égal à `NOW`, l'heure locale actuelle est utilisée.\n\n4) Si `mtime` est égal à `UTC`, l'heure actuelle en\n[UTC](http://en.wikipedia.org/wiki/Coordinated_Universal_Time) est utilisée.\n\n5) Si `mtime` est au format `NOW - 1 day` ou `UTC + 1 hour 30 min`,\nl'heure locale/UTC actuelle plus/moins l'heure spécifiée avec la chaîne d'heure\nest utilisée. Le format de la chaîne d'heure est décrit dans une annexe du Guide de l'utilisateur de Robot Framework\n.\n\nExemples :\n\nSet Modified Time | /path/file | 1177654467 | # Heure donnée en secondes d'époque \n---|---|---|--- \nSet Modified Time | /path/file | 2007-04-27 9:14:27 | # Heure donnée sous forme d'horodatage \nSet Modified Time | /path/file | NOW | # L'heure locale d'exécution \nSet Modified Time | /path/file | NOW - 1 jour | # 1 jour soustrait de l'heure locale \nSet Modified Time | /path/file | UTC + 1h 2min 3s | # 1h 2min 3s ajoutée à l'heure UTC"
+    },
+    {
+        "name": "Should Exist",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails unless the given path (file or directory) exists.</p>\n<p>The path can be given as an exact path or as a glob pattern. See the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section for details about the supported syntax.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails unless the given path (file or directory) exists.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 374,
+        "doc_fr": "Échoue à moins que le chemin donné (fichier ou répertoire) n'existe.\n\nLe chemin peut être donné sous forme de chemin exact ou de modèle global. Consultez la section Modèles globaux\npour plus de détails sur la syntaxe prise en charge.\n\nLe message d'erreur par défaut peut être remplacé par l'argument `msg`."
+    },
+    {
+        "name": "Should Not Exist",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "msg",
+                "type": null,
+                "defaultValue": "None",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "msg=None"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Fails if the given path (file or directory) exists.</p>\n<p>The path can be given as an exact path or as a glob pattern. See the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section for details about the supported syntax.</p>\n<p>The default error message can be overridden with the <code>msg</code> argument.</p>",
+        "shortdoc": "Fails if the given path (file or directory) exists.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 387,
+        "doc_fr": "Échoue si le chemin donné (fichier ou répertoire) existe.\n\nLe chemin peut être donné sous forme de chemin exact ou de modèle global. Consultez la section Modèles globaux\npour plus de détails sur la syntaxe prise en charge.\n\nLe message d'erreur par défaut peut être remplacé par l'argument `msg`."
+    },
+    {
+        "name": "Split Extension",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Splits the extension from the given path.</p>\n<p>The given path is first normalized (e.g. possible trailing path separators removed, special directories <code>..</code> and <code>.</code> removed). The base path and extension are returned as separate components so that the dot used as an extension separator is removed. If the path contains no extension, an empty string is returned for it. Possible leading and trailing dots in the file name are never considered to be extension separators.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${path}</td>\n<td>${ext} =</td>\n<td>Split Extension</td>\n<td>file.extension</td>\n</tr>\n<tr>\n<td>${p2}</td>\n<td>${e2} =</td>\n<td>Split Extension</td>\n<td>path/file.ext</td>\n</tr>\n<tr>\n<td>${p3}</td>\n<td>${e3} =</td>\n<td>Split Extension</td>\n<td>path/file</td>\n</tr>\n<tr>\n<td>${p4}</td>\n<td>${e4} =</td>\n<td>Split Extension</td>\n<td>p1/../p2/file.ext</td>\n</tr>\n<tr>\n<td>${p5}</td>\n<td>${e5} =</td>\n<td>Split Extension</td>\n<td>path/.file.ext</td>\n</tr>\n<tr>\n<td>${p6}</td>\n<td>${e6} =</td>\n<td>Split Extension</td>\n<td>path/.file</td>\n</tr>\n</table>\n<p>=&gt;</p>\n<ul>\n<li>${path} = 'file' &amp; ${ext} = 'extension'</li>\n<li>${p2} = 'path/file' &amp; ${e2} = 'ext'</li>\n<li>${p3} = 'path/file' &amp; ${e3} = ''</li>\n<li>${p4} = 'p2/file' &amp; ${e4} = 'ext'</li>\n<li>${p5} = 'path/.file' &amp; ${e5} = 'ext'</li>\n<li>${p6} = 'path/.file' &amp; ${e6} = ''</li>\n</ul>",
+        "shortdoc": "Splits the extension from the given path.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1169,
+        "doc_fr": "Sépare l'extension du chemin donné.\n\nLe chemin donné est d'abord normalisé (par exemple, les éventuels séparateurs de chemin\nde fin sont supprimés, les répertoires spéciaux `..` et `.` sont supprimés). Le chemin de base et\nl'extension sont renvoyés sous forme de composants séparés de sorte que le point utilisé\ncomme séparateur d'extension soit supprimé. Si le chemin ne contient aucune extension, une chaîne\nvide est renvoyée pour celui-ci. Les éventuels points de début et de fin dans le nom de fichier\nne sont jamais considérés comme des séparateurs d'extension.\n\nExemples :\n\n${path} | ${ext} = | Split Extension | file.extension \n---|---|---|--- \n${p2} | ${e2} = | Split Extension | path/file.ext \n${p3} | ${e3} = | Split Extension | path/file \n${p4} | ${e4} = | Split Extension | p1/../p2/file.ext \n${p5} | ${e5} = | Extension divisée | path/.file.ext \n${p6} | ${e6} = | Extension divisée | path/.file \n\n=>\n\n* ${path} = 'file' & ${ext} = 'extension'\n* ${p2} = 'path/file' & ${e2} = 'ext'\n* ${p3} = 'path/file' & ${e3} = ''\n* ${p4} = 'p2/file' & ${e4} = 'ext'\n* ${p5} = 'path/.file' & ${e5} = 'ext'\n* ${p6} = 'path/.file' & ${e6} = ''"
+    },
+    {
+        "name": "Split Path",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Splits the given path from the last path separator (<code>/</code> or <code>\\</code>).</p>\n<p>The given path is first normalized (e.g. a possible trailing path separator is removed, special directories <code>..</code> and <code>.</code> removed). The parts that are split are returned as separate components.</p>\n<p>Examples:</p>\n<table border=\"1\">\n<tr>\n<td>${path1}</td>\n<td>${dir} =</td>\n<td>Split Path</td>\n<td>abc/def</td>\n</tr>\n<tr>\n<td>${path2}</td>\n<td>${file} =</td>\n<td>Split Path</td>\n<td>abc/def/ghi.txt</td>\n</tr>\n<tr>\n<td>${path3}</td>\n<td>${d2}  =</td>\n<td>Split Path</td>\n<td>abc/../def/ghi/</td>\n</tr>\n</table>\n<p>=&gt;</p>\n<ul>\n<li>${path1} = 'abc' &amp; ${dir} = 'def'</li>\n<li>${path2} = 'abc/def' &amp; ${file} = 'ghi.txt'</li>\n<li>${path3} = 'def' &amp; ${d2} = 'ghi'</li>\n</ul>",
+        "shortdoc": "Splits the given path from the last path separator (``/`` or ``\\``).",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1150,
+        "doc_fr": "Sépare le chemin donné à partir du dernier séparateur de chemin (`/` ou `\\`).\n\nLe chemin donné est d'abord normalisé (par exemple, un éventuel séparateur de chemin de fin est\nsupprimé, les répertoires spéciaux `..` et `.` sont supprimés). Les parties qui sont\nséparées sont renvoyées sous forme de composants séparés.\n\nExemples :\n\n${path1} | ${dir} = | Split Path | abc/def \n---|---|---|--- \n${path2} | ${file} = | Split Path | abc/def/ghi.txt \n${path3} | ${d2} = | Split Path | abc/../def/ghi/  \n  \n=>\n\n  * ${path1} = 'abc' & ${dir} = 'def'\n  * ${path2} = 'abc/def' & ${file} = 'ghi.txt'\n  * ${path3} = 'def' & ${d2} = 'ghi'"
+    },
+    {
+        "name": "Touch",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Emulates the UNIX touch command.</p>\n<p>Creates a file, if it does not exist. Otherwise changes its access and modification times to the current time.</p>\n<p>Fails if used with the directories or the parent directory of the given file does not exist.</p>",
+        "shortdoc": "Emulates the UNIX touch command.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 1403,
+        "doc_fr": "Émule la commande tactile UNIX.\n\nCrée un fichier s'il n'existe pas. Sinon, modifie ses heures d'accès et de modification à l'heure actuelle.\n\nÉchoue si utilisé avec les répertoires ou si le répertoire parent du fichier donné\nn'existe pas."
+    },
+    {
+        "name": "Wait Until Created",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "timeout",
+                "type": null,
+                "defaultValue": "1 minute",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "timeout=1 minute"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Waits until the given file or directory is created.</p>\n<p>The path can be given as an exact path or as a glob pattern. See the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section for details about the supported syntax. If the path is a pattern, the keyword returns when an item matching it is created.</p>\n<p>The optional <code>timeout</code> can be used to control the maximum time of waiting. The timeout is given as a timeout string, e.g. in a format <code>15 seconds</code>, <code>1min 10s</code> or just <code>10</code>. The time string format is described in an appendix of Robot Framework User Guide.</p>\n<p>If the timeout is negative, the keyword is never timed-out. The keyword returns immediately, if the path already exists.</p>",
+        "shortdoc": "Waits until the given file or directory is created.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 496,
+        "doc_fr": "Attend que le fichier ou le répertoire donné soit créé.\n\nLe chemin peut être donné sous forme de chemin exact ou de modèle global. Consultez la section Modèles globaux\npour plus de détails sur la syntaxe prise en charge. Si le chemin est un modèle, le mot-clé renvoie la valeur lorsqu'un élément correspondant est créé.\n\nLe paramètre optionnel `timeout` peut être utilisé pour contrôler le temps d'attente maximal. Le\ntimeout est donné sous forme de chaîne de délai d'attente, par exemple au format `15 secondes`, `1min\n10s` ou simplement `10`. Le format de la chaîne de temps est décrit dans une annexe du Guide de l'utilisateur de Robot\nFramework.\n\nSi le délai d'attente est négatif, le mot-clé n'est jamais dépassé. Le mot-clé\nrenvoie immédiatement si le chemin existe déjà."
+    },
+    {
+        "name": "Wait Until Removed",
+        "args": [
+            {
+                "name": "path",
+                "type": null,
+                "defaultValue": null,
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": true,
+                "repr": "path"
+            },
+            {
+                "name": "timeout",
+                "type": null,
+                "defaultValue": "1 minute",
+                "kind": "POSITIONAL_OR_NAMED",
+                "required": false,
+                "repr": "timeout=1 minute"
+            }
+        ],
+        "returnType": null,
+        "doc": "<p>Waits until the given file or directory is removed.</p>\n<p>The path can be given as an exact path or as a glob pattern. See the <a href=\"#Glob%20patterns\" class=\"name\">Glob patterns</a> section for details about the supported syntax. If the path is a pattern, the keyword waits until all matching items are removed.</p>\n<p>The optional <code>timeout</code> can be used to control the maximum time of waiting. The timeout is given as a timeout string, e.g. in a format <code>15 seconds</code>, <code>1min 10s</code> or just <code>10</code>. The time string format is described in an appendix of Robot Framework User Guide.</p>\n<p>If the timeout is negative, the keyword is never timed-out. The keyword returns immediately, if the path does not exist in the first place.</p>",
+        "shortdoc": "Waits until the given file or directory is removed.",
+        "tags": [],
+        "source": "/home/peke/Devel/robotframework/src/robot/libraries/OperatingSystem.py",
+        "lineno": 470,
+        "doc_fr": "Attend que le fichier ou le répertoire donné soit supprimé.\n\nLe chemin peut être donné sous forme de chemin exact ou de modèle global. Consultez la section Modèles globaux\npour plus de détails sur la syntaxe prise en charge. Si le chemin est un modèle, le mot-clé attend que tous les éléments correspondants soient supprimés.\n\nLe paramètre optionnel `timeout` peut être utilisé pour contrôler le temps d'attente maximal. Le\ntimeout est donné sous forme de chaîne de délai d'attente, par exemple au format `15 secondes`, `1min\n10s` ou simplement `10`. Le format de la chaîne de temps est décrit dans une annexe du Guide de l'utilisateur de Robot\nFramework.\n\nSi le délai d'attente est négatif, le mot-clé n'est jamais dépassé. Le mot-clé\nest renvoyé immédiatement, si le chemin n'existe pas en premier lieu."
+    }
+]

@@ -1,9 +1,7 @@
 # RobotFrameWords
 
-**Languages:**  
-- [English](#-english)  
-- [Français](#-français)
-
+**Languages:**  [🇬🇧 EN](#-english)/[🇫🇷 FR](#-français)
+  
 ---
 
 ## 🇬🇧 English
@@ -13,7 +11,7 @@ It centralizes keywords, libraries, and all relevant documentation content requi
 
 The goal of the project is to provide an offline, readable, ergonomic, and productivity-oriented tool, eliminating constant back-and-forth between a web browser, official documentation, and test code.
 
-✨ Features
+## ✨ Features
 
 - Centralized access to Robot Framework documentation
 - Advanced full-text search
@@ -72,7 +70,7 @@ source ~/rf_keywords_doc/kdoc_venv/bin/activate
 
 > ⚠️ This script is intentionally minimal. Users are free to use it or not, but it provides a coherent base aligned with the project requirements.
 
-## 🚀 Installation
+## 🚀 Installation
 
 1. Clone the repository:
 ```bash
@@ -95,7 +93,7 @@ pip install customtkinter pillow html2text
 
 ---
 
-## ▶️ Running the Application
+## ▶️ Running the Application
 
 Once the virtual environment is activated:
 ```bash
@@ -111,15 +109,12 @@ macOS: ⚠️ not tested
 
 The interface relies on Tkinter; compatibility therefore depends on the platform’s Tk support.
 
-📚 Use Cases
+## 📚 Use Cases
 
-Robot Framework developers and test engineers
-
-Fast keyword lookup without a web browser
-
-Offline documentation access
-
-Support tool for writing automated tests
+* Robot Framework developers and test engineers
+* Fast keyword lookup without a web browser
+* Offline documentation access
+* Support tool for writing automated tests
 
 ## 🛠️ Project Status
 
@@ -140,7 +135,7 @@ To be defined.
 
 Project developed as an advanced tooling initiative around Robot Framework by Sébastien Dethyre.
 
-## 🤝 Contributions
+## 🤝 Contributions
 
 Contributions, suggestions, and feedback are welcome.  
 Feel free to open an issue or submit a pull request.

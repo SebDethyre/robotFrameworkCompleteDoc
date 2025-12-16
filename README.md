@@ -1,6 +1,6 @@
 # RobotFrameWords
 
-**Languages:**  [🇬🇧 EN](#-english)/[🇫🇷 FR](#-français)
+**Languages:**  [🇬🇧 EN](#-english) / [🇫🇷 FR](#-français)
   
 ---
 

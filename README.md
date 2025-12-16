@@ -1,4 +1,4 @@
-# robotFrameworkCompleteDoc
+# RobotFrameWords
 
 **robotFrameworkCompleteDoc** est une application graphique dédiée à la consultation complète de la documentation Robot Framework. Elle centralise l’ensemble des mots-clés, librairies et contenus documentaires utiles à l’implémentation et à l’écriture de tests Robot Framework, au sein d’une interface intuitive et structurée.
 
